@@ -8,11 +8,34 @@
 }
 
 .section-home-branding {
-    background-color: var(--color-secondary-light);
+    background-color: var(--color-white);
     text-align: center;
 }
+h1{
+    color: var(--color-white);
+}
 
-.section-home-branding p {
-    font-size: 1.3em;
-    background-color: var(--color-secondary-light);
+.Bitgo {
+    font-size: 96px;
+    font-family: "Open Sans";
+    font-weight: bold;
+
+}
+.coinitem {
+    display: flex;
+    border: 2px solid black;
+    justify-content: space-around;
+
+}
+.coinprice{
+    display: flex;
+    justify-content: flex-start;
+    border: 2px solid black;
+}
+.listcoins{
+    border: 2px solid black;;
+}
+.coinImage{
+    width: auto;
+    height: 50px;
 }

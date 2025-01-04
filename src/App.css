@@ -31,8 +31,8 @@ Hij mag krimpen als het scherm minder breed wordt, maar niet groeien als er meer
 }
 
 .footer-navigation {
-  background-color: var(--color-primary);
-  color: var(--color-secondary);
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
   text-align: center;
   padding: 32px 0;
   font-weight: 600;

@@ -1,33 +1,106 @@
 import './Home.css';
 import logo from '../../assets/logo-white.png';
 import billboard from '../../assets/billboard-logo.png';
+import axios from 'axios';
+import {useState,useEffect} from "react";
+import sortData from "../../helpers/sortData.js"
+
 
 function Home() {
+
+    const [cryptoStats, setCryptoStats] = useState([])
+
+   useEffect(()=>{
+
+    async function fetchData() {
+
+        try {
+            const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+                params: {
+                    vs_currency: 'usd', // Huidige prijs in USD
+                    ids: 'bitcoin,ethereum,polkadot,solana,cardano,ripple', // Specificeer de crypto's
+                },
+            });
+
+            console.log(response.data);
+
+            const formattedData = response.data.map((coin) => ({
+                name: coin.name,
+                symbol: coin.symbol,
+                price: coin.current_price.toFixed(2), // Huidige prijs
+                changePercent: coin.price_change_percentage_24h.toFixed(2), // 24-uurs verandering
+                marketCap: coin.market_cap.toLocaleString(), // Market cap in leesbaar formaat
+                marketCapRank:coin.market_cap_rank,
+                logo: coin.image, // Logo URL
+            }));
+
+            console.log(formattedData);
+            setCryptoStats(formattedData)
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    fetchData();
+
+   },[]);
+
+   function sortPrice () {
+       const sortedStats = sortData(cryptoStats,"price","desc");
+       setCryptoStats((sortedStats))
+
+   }
+    function sortPercent () {
+        const sortedStats = sortData(cryptoStats,"changePercent","desc");
+        setCryptoStats((sortedStats))
+
+    }
+
+
+
     return (<>
         <header className="header outer-content-container">
-            <div className="inner-content-container">
-                <img src={logo} alt="Company logo"/>
-            </div>
+            <div data-layer="BitGo" className="Bitgo">BitGo</div>
         </header>
         <section className="section-home-branding outer-content-container">
             <div className="inner-content-container__text-restriction">
-                <h1>Bij Blogventure geloven we in de kracht van woorden*</h1>
-                <figure>
-                    <img src={billboard} alt="Afbeelding van een schreeuwerig billboard"/>
-                    <figcaption>* En in billboards. Die zijn niet te missen namelijk.</figcaption>
-                </figure>
-                <p>We geloven dat iedereen een verhaal te
-                    vertellen heeft, avonturen te delen en kennis te verspreiden. Daarom hebben we een platform
-                    gecreëerd waar creativiteit, passie en ontdekking samenkomen.</p>
-                <p>Of je nu een doorgewinterde schrijver bent of gewoon je gedachten wilt delen, Blogventure is de
-                    plek waar jouw stem wordt gehoord. Duik in een wereld van verhalen, reizen, koken, en nog veel
-                    meer. Ontdek nieuwe perspectieven en maak deel uit van een gemeenschap van gepassioneerde
-                    bloggers.</p>
-                <p>Dus waar wacht je nog op? Stap aan boord van deze spannende reis en laat jouw avontuur beginnen op
-                    Blogventure!</p>
+                <h1>Hier worden de 5 belangrijkste crypto's weergegeven</h1>
+
+                <button
+                    onClick={sortPrice}
+                    className="button1"
+                >Sorteer prijs
+                </button>
+
+                <button
+                    onClick={sortPercent}
+                    className="button2"
+                >Sorteer 24h
+                </button>
+
             </div>
         </section>
-    </>);
+
+            <section className="listcoins">
+                {cryptoStats.length > 0 ? (
+                    <ul>
+                        {cryptoStats.map((coin) =>(
+                            <li className="coinitem" key={coin.symbol}>
+                                <p className="coinMCR">{coin.marketCapRank}</p>
+                                <img src={coin.logo} className="coinImage" alt="Coins"/>
+                                <p className="coinMC">${coin.marketCap}</p>
+                                <p className="coinprice">${coin.price}</p>
+                                <p className="coinchange">{coin.changePercent}%</p>
+                            </li>
+                        ))}
+                    </ul>
+                ):(
+                    <p>Bezig met laden.. </p>
+                )}
+        </section>
+    </>
+    );
 }
+
 
 export default Home;

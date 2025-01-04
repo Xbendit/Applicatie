@@ -1,7 +1,7 @@
 import {Route, Routes } from 'react-router-dom';
 import Home from './pages/homePage/Home.jsx';
-import NewPost from './pages/newPostPage/NewPost.jsx';
-import Overview from './pages/overviewPage/Overview.jsx';
+import LoginPage from './pages/loginPage/LoginPage.jsx';
+import PortfolioPage from './pages/portfolioPage/PortfolioPage.jsx';
 import PostDetail from './pages/postDetailPage/PostDetail.jsx';
 import './App.css'
 import NotFound from './pages/notFoundPage/NotFound.jsx';
@@ -16,15 +16,14 @@ function App() {
             <main>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/new" element={<NewPost />} />
-                    <Route path="/posts" element={<Overview />} />
+                    <Route path="/new" element={<LoginPage />} />
+                    <Route path="/posts" element={<PortfolioPage />} />
                     <Route path="/posts/:id" element={<PostDetail />} />
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
             </main>
-            {/*Van de footer zou je ook een component mogen maken*/}
             <footer className="footer-navigation outer-content-container">
-                Blogventure &copy; 2023 - ontwikkeld voor NOVI Hogeschool
+                BitGO &copy; 2025
             </footer>
         </>
     )

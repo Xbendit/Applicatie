@@ -1,4 +1,4 @@
-import './NewPost.css';
+import './LoginPage.css';
 import {useState} from 'react';
 import calculateReadTime from '../../helpers/calculateReadTime.js';
 import {Link, useNavigate} from 'react-router-dom';
@@ -6,7 +6,7 @@ import Input from '../../components/input/Input.jsx';
 import Button from '../../components/button/Button.jsx';
 import axios from 'axios';
 
-function NewPost() {
+function LoginPage() {
     const [formState, setFormState] = useState({
         title: '',
         subtitle: '',
@@ -58,44 +58,25 @@ function NewPost() {
             <div className="inner-content-container__text-restriction">
                 {!submitSuccessId ?
                 <form className="new-post-form" onSubmit={handleSubmit}>
-                    <h1>Post toevoegen</h1>
+                    <h1>Inloggen</h1>
                     <Input
                         type="text"
                         name="title"
-                        labelText="Titel"
+                        labelText="E-mail"
                         required={true}
                         formStateValue={formState.title}
                         handleChange={handleChange}/>
                     <Input
                         type="text"
                         name="subtitle"
-                        labelText="Subtitel"
+                        labelText="Wachtwoord"
                         required={true}
                         formStateValue={formState.subtitle}
                         handleChange={handleChange}/>
-                    <Input
-                        type="text"
-                        name="author"
-                        labelText="Naam en achternaam"
-                        required={true}
-                        formStateValue={formState.author}
-                        handleChange={handleChange}/>
-
-                    <label htmlFor="post-content">Blogpost</label>
-                    <textarea
-                        name="content"
-                        id="post-content"
-                        cols="30"
-                        rows="10"
-                        required
-                        minLength={300}
-                        maxLength={2000}
-                        value={formState.content}
-                        onChange={handleChange}></textarea>
                     <Button type="submit" variant="primary">
-                        Toevoegen
+                        Inloggen
                     </Button>
-                    {error && <p>Er is iets misgegaan bij het versturen van het formulier. Probeer het opnieuw</p>}
+                    {error && <p>Er is iets misgegaan bij het Inloggen. Probeer het opnieuw</p>}
                 </form>
                 : <p>De blogpost is succesvol toegevoegd. Je kunt deze <Link to={`/posts/${submitSuccessId}`}>hier</Link> bekijken.</p>}
             </div>
@@ -103,4 +84,4 @@ function NewPost() {
     );
 }
 
-export default NewPost;
+export default LoginPage;
