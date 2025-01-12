@@ -107,8 +107,6 @@ function PortfolioPage() {
 
                     <div>
 
-                        {/* Bitcoin: bc1qjasf9z3h7w3jspkhtgatgpyvvzgpa2wwd2lr0eh5tx44reyn2k7sfc27a4*/}
-
                         <input
                             type="text"
                             value={walletAdress.bitcoin}
