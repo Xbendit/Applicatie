@@ -52,36 +52,6 @@ function PortfolioPage() {
     }
 
 
-    /*const [cryptoBalance,setCryptoBalance] = useState(null)
-        const [inputValue, setInputValue] = useState('')
-        const [blockchaintype ,setBlockchaintype] = useState('')
-
-
-        const handleInputChange = (event) => {
-            setInputValue(event.target.value)
-        }
-
-        async function fetchWalletData() {
-            /!*const walletAddress = 'bc1qjasf9z3h7w3jspkhtgatgpyvvzgpa2wwd2lr0eh5tx44reyn2k7sfc27a4'*!/
-            const API_KEY = 'zpka_cc14c066ab584442aee71a97ae663a32_2b39c313';
-            const BASE_URL = 'https://svc.blockdaemon.com'; // Blockdaemon API basis-URL
-            const blockchain = 'bitcoin';
-
-            try {
-                const response = await axios.get(`${BASE_URL}/universal/v1/${blockchain}/mainnet/account/${inputValue}`,{
-                    headers: {
-                        Authorization: `Bearer ${API_KEY}`,
-                    },
-                }
-            );
-                console.log(response)
-        setCryptoBalance(response.data)
-
-
-            } catch (e) {
-                console.error(e);
-            }
-        }*/
 
 
     const [cryptoBalance, setCryptoBalance] = useState({
