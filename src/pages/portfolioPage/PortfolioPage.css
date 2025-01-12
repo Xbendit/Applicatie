@@ -1,6 +1,6 @@
 .overview-section {
     text-align: left;
-    background-color: var(--color-secondary-light);
+    background-color: var( --color-secondary);
 }
 
 .overview-section h1 {
