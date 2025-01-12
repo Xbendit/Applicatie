@@ -106,7 +106,7 @@ function PortfolioPage() {
 
     const fetchWalletData = async (blockchain) => {
 
-        const API_KEY = 'zpka_cc14c066ab584442aee71a97ae663a32_2b39c313';
+        const API_KEY =
         const BASE_URL = 'https://svc.blockdaemon.com'; // Blockdaemon API basis-URL
 
 
