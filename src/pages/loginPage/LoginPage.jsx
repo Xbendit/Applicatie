@@ -1,6 +1,6 @@
 import './LoginPage.css';
 import {useState} from 'react';
-import calculateReadTime from '../../helpers/calculateReadTime.js';
+import calculateReadTimeRemove from '../../helpers/calculateReadTime[Remove].js';
 import {Link, useNavigate} from 'react-router-dom';
 import Input from '../../components/input/Input.jsx';
 import Button from '../../components/button/Button.jsx';
@@ -32,7 +32,7 @@ function LoginPage() {
             shares: 0,
             comments: 0,
             created: new Date().toISOString(),
-            readTime: calculateReadTime(formState.content),
+            readTime: calculateReadTimeRemove(formState.content),
         });
 
         try {
@@ -41,7 +41,7 @@ function LoginPage() {
                 shares: 0,
                 comments: 0,
                 created: new Date().toISOString(),
-                readTime: calculateReadTime(formState.content),
+                readTime: calculateReadTimeRemove(formState.content),
             });
             console.log(response.data);
 
