@@ -6,10 +6,15 @@ import calculateWaarde from "../../helpers/calculateWaarde.js";
 import calculateUnit from "../../helpers/calculateUnit.js";
 import ButtonPortfolio from "../../components/button/ButtonPortfolio.jsx";
 import InputPortfolio from "../../components/input/InputPortfolio.jsx";
+import CryptoInfoPortfolio from "../../components/cryptoInfoPortfolio/CryptoInfoPortfolio.jsx";
 
 function PortfolioPage() {
 
     const [cryptoStats, setCryptoStats] = useState([])
+
+    const [cryptoBalance, setCryptoBalance] = useState({});
+    const [walletAdress, setwalletAdress] = useState({});
+    const [isButtonFetched, setIsButtonFetched] = useState({});
 
     useEffect(()=>{
 
@@ -63,7 +68,7 @@ function PortfolioPage() {
 
     /*'bitcoin,ethereum,polkadot,solana,cardano,ripple'*/
 
-    const [cryptoBalance, setCryptoBalance] = useState({
+    /*const [cryptoBalance, setCryptoBalance] = useState({
         bitcoin: null,
         ethereum: null,
         polkadot: null,
@@ -88,7 +93,7 @@ function PortfolioPage() {
         solana: false,
         dogecoin: false,
         xrp: false,
-    });
+    });*/
 
 
 
@@ -116,7 +121,7 @@ function PortfolioPage() {
                 }
             );
             console.log(response)
-            setCryptoBalance({...cryptoBalance, [blockchain]: response.data[0],})
+            setCryptoBalance({...cryptoBalance, [blockchain]: response.data[0]})
 
            /* setIsButtonFetched(true)*/
 
@@ -140,7 +145,52 @@ function PortfolioPage() {
                     <h1>Hier worden de 5 belangrijkste crypto's weergegeven</h1>
 
 
-                    {/* Bitcoin: bc1qjasf9z3h7w3jspkhtgatgpyvvzgpa2wwd2lr0eh5tx44reyn2k7sfc27a4 */}
+                    <div className="portfolio-page">
+                        {['bitcoin', 'ethereum', 'polkadot', 'solana', 'dogecoin', 'xrp'].map((blockchain) => {
+                            const blockchainSymbol = {
+                                bitcoin: 'btc',
+                                ethereum: 'eth',
+                                polkadot: 'dot',
+                                solana: 'sol',
+                                dogecoin: 'doge',
+                                xrp: 'xrp'
+                            }[blockchain];
+
+                            const blockchainStats = cryptoStats.find(stats => stats.symbol === blockchainSymbol);
+
+                            return (
+                                <CryptoInfoPortfolio
+                                    key={blockchain}
+                                    blockchain={blockchain}
+                                    walletAdress={walletAdress[blockchain] || ''}
+                                    handleInputChange={handleInputChange}
+                                    fetchWalletData={fetchWalletData}
+                                    isButtonFetched={isButtonFetched[blockchain]}
+                                    cryptoBalance={cryptoBalance[blockchain]}
+                                    cryptoStats={blockchainStats} // Pass correct stats
+                                />
+                            );
+                        })}
+
+
+                        {/*{['bitcoin', 'ethereum', 'polkadot', 'solana', 'dogecoin', 'xrp'].map((blockchain) => (
+                            <CryptoInfoPortfolio
+                                key={blockchain}
+                                blockchain={blockchain}
+                                walletAdress={walletAdress[blockchain] || ''}
+                                handleInputChange={handleInputChange}
+                                fetchWalletData={fetchWalletData}
+                                isButtonFetched={isButtonFetched[blockchain]}
+                                cryptoBalance={cryptoBalance[blockchain]}
+                                cryptoStats={cryptoStats[blockchain]}
+                                calculateUnit={calculateUnit}
+                                calculateWaarde={calculateWaarde}
+                            />
+                        ))}*/}
+                    </div>
+
+
+                    {/*Bitcoin: bc1qjasf9z3h7w3jspkhtgatgpyvvzgpa2wwd2lr0eh5tx44reyn2k7sfc27a4
                     <div>
 
                         <InputPortfolio
@@ -175,7 +225,7 @@ function PortfolioPage() {
 
                     </div>
 
-                    {/* Ethereum: 0x0a4c79ce84202b03e95b7a692e5d728d83c44c76*/}
+                     Ethereum: 0x0a4c79ce84202b03e95b7a692e5d728d83c44c76
                     <div>
                         <InputPortfolio
                             handleInputChange={handleInputChange}
@@ -208,7 +258,7 @@ function PortfolioPage() {
                     </div>
 
 
-                    {/*Ripple: rMhkqz3DeU7GUUJKGZofusbrTwZe6bDyb1 */}
+                    Ripple: rMhkqz3DeU7GUUJKGZofusbrTwZe6bDyb1
                     <div>
                         <InputPortfolio
                             handleInputChange={handleInputChange}
@@ -242,7 +292,7 @@ function PortfolioPage() {
                     </div>
 
 
-                    {/*Solona: 8PjJTv657aeN9p5R2WoM6pPSz385chvTTytUWaEjSjkq */}
+                    Solona: 8PjJTv657aeN9p5R2WoM6pPSz385chvTTytUWaEjSjkq
                     <div>
                         <InputPortfolio
                             handleInputChange={handleInputChange}
@@ -275,7 +325,7 @@ function PortfolioPage() {
 
                     </div>
 
-                    {/*Dogecoin: D94tDRhr4X9Tjgr8MG1Nrd5ARpesPAM7ZB*/}
+                    Dogecoin: D94tDRhr4X9Tjgr8MG1Nrd5ARpesPAM7ZB
                     <div>
                         <InputPortfolio
                             handleInputChange={handleInputChange}
@@ -310,7 +360,7 @@ function PortfolioPage() {
 
 
 
-                    {/*Polkadot: 11YYjhjmjwn3csohNDLHa9Kr38nY8kd736a7TkPVagXoRus */}
+                    Polkadot: 11YYjhjmjwn3csohNDLHa9Kr38nY8kd736a7TkPVagXoRus
                     <div>
                         <InputPortfolio
                             handleInputChange={handleInputChange}
@@ -341,7 +391,7 @@ function PortfolioPage() {
                             </>
                         )}
 
-                    </div>
+                    </div>*/}
 
                 </div>
 
