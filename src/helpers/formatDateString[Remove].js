@@ -1,4 +1,4 @@
-function formatDateString(dateString) {
+function formatDateStringRemove(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('nl-NL', {
         year: 'numeric',
@@ -7,4 +7,4 @@ function formatDateString(dateString) {
     });
 }
 
-export default formatDateString;
+export default formatDateStringRemove;

@@ -4,6 +4,7 @@ import billboard from '../../assets/billboard-logo.png';
 import axios from 'axios';
 import {useState,useEffect} from "react";
 import sortData from "../../helpers/sortData.js"
+import CryptoInfoHome from "../../components/cryptoInfoHome/CryptoInfoHome.jsx";
 
 
 function Home() {
@@ -85,13 +86,14 @@ function Home() {
                 {cryptoStats.length > 0 ? (
                     <ul>
                         {cryptoStats.map((coin) =>(
-                            <li className="coinitem" key={coin.symbol}>
-                                <p className="coinMCR">{coin.marketCapRank}</p>
-                                <img src={coin.logo} className="coinImage" alt="Coins"/>
-                                <p className="coinMC">${coin.marketCap}</p>
-                                <p className="coinprice">${coin.price}</p>
-                                <p className="coinchange">{coin.changePercent}%</p>
-                            </li>
+                                <CryptoInfoHome
+                                    key = {coin.symbol}
+                                    marketCapRank = {coin.marketCapRank}
+                                    image = {coin.logo}
+                                    marketCap = {coin.marketCap}
+                                    price = {coin.price}
+                                    change = {coin.changePercent}
+                                />
                         ))}
                     </ul>
                 ):(

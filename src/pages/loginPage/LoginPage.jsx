@@ -1,9 +1,9 @@
 import './LoginPage.css';
 import {useState} from 'react';
-import calculateReadTime from '../../helpers/calculateReadTime.js';
+import calculateReadTimeRemove from '../../helpers/calculateReadTime[Remove].js';
 import {Link, useNavigate} from 'react-router-dom';
-import Input from '../../components/input/Input.jsx';
-import Button from '../../components/button/Button.jsx';
+import InputRemove from '../../components/input/Input[remove].jsx';
+import ButtonRemove from '../../components/button/Button[remove].jsx';
 import axios from 'axios';
 
 function LoginPage() {
@@ -32,7 +32,7 @@ function LoginPage() {
             shares: 0,
             comments: 0,
             created: new Date().toISOString(),
-            readTime: calculateReadTime(formState.content),
+            readTime: calculateReadTimeRemove(formState.content),
         });
 
         try {
@@ -41,7 +41,7 @@ function LoginPage() {
                 shares: 0,
                 comments: 0,
                 created: new Date().toISOString(),
-                readTime: calculateReadTime(formState.content),
+                readTime: calculateReadTimeRemove(formState.content),
             });
             console.log(response.data);
 
@@ -59,23 +59,23 @@ function LoginPage() {
                 {!submitSuccessId ?
                 <form className="new-post-form" onSubmit={handleSubmit}>
                     <h1>Inloggen</h1>
-                    <Input
+                    <InputRemove
                         type="text"
                         name="title"
                         labelText="E-mail"
                         required={true}
                         formStateValue={formState.title}
                         handleChange={handleChange}/>
-                    <Input
+                    <InputRemove
                         type="text"
                         name="subtitle"
                         labelText="Wachtwoord"
                         required={true}
                         formStateValue={formState.subtitle}
                         handleChange={handleChange}/>
-                    <Button type="submit" variant="primary">
+                    <ButtonRemove type="submit" variant="primary">
                         Inloggen
-                    </Button>
+                    </ButtonRemove>
                     {error && <p>Er is iets misgegaan bij het Inloggen. Probeer het opnieuw</p>}
                 </form>
                 : <p>De blogpost is succesvol toegevoegd. Je kunt deze <Link to={`/posts/${submitSuccessId}`}>hier</Link> bekijken.</p>}

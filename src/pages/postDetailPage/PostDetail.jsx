@@ -1,10 +1,10 @@
 import {Link, useParams} from 'react-router-dom';
-import formatDateString from '../../helpers/formatDateString.js';
+import formatDateStringRemove from '../../helpers/formatDateString[Remove].js';
 import {CaretLeft, Clock} from "@phosphor-icons/react";
 import './PostDetail.css';
 import {useState} from 'react';
 import axios from 'axios';
-import Button from '../../components/button/Button.jsx';
+import ButtonRemove from '../../components/button/Button[remove].jsx';
 
 function PostDetail() {
     const [post, setPost] = useState([]);
@@ -28,11 +28,11 @@ function PostDetail() {
     return (
         <section className="post-detail-section outer-content-container">
             <div className="inner-content-container">
-                <Button type="button" onClick={fetchPost} variant="primary">Haal de post op</Button>
+                <ButtonRemove type="button" onClick={fetchPost} variant="primary">Haal de post op</ButtonRemove>
                 {Object.keys(post).length > 0 && (<>
                     <h1>{post.title}</h1>
                     <h2>{post.subtitle}</h2>
-                    <p className="post-detail-author">Geschreven door <em>{post.author}</em> op {formatDateString(post.created)}
+                    <p className="post-detail-author">Geschreven door <em>{post.author}</em> op {formatDateStringRemove(post.created)}
                     </p>
                     <span className="post-detail-read-time">
                     <Clock color="#50535C" size={18}/>
