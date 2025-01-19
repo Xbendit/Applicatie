@@ -4,7 +4,7 @@ import {CaretLeft, Clock} from "@phosphor-icons/react";
 import './PostDetail.css';
 import {useState} from 'react';
 import axios from 'axios';
-import Button from '../../components/button/Button.jsx';
+import ButtonRemove from '../../components/button/Button[remove].jsx';
 
 function PostDetail() {
     const [post, setPost] = useState([]);
@@ -28,7 +28,7 @@ function PostDetail() {
     return (
         <section className="post-detail-section outer-content-container">
             <div className="inner-content-container">
-                <Button type="button" onClick={fetchPost} variant="primary">Haal de post op</Button>
+                <ButtonRemove type="button" onClick={fetchPost} variant="primary">Haal de post op</ButtonRemove>
                 {Object.keys(post).length > 0 && (<>
                     <h1>{post.title}</h1>
                     <h2>{post.subtitle}</h2>

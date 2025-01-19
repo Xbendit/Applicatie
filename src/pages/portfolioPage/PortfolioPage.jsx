@@ -1,11 +1,11 @@
 import './PortfolioPage.css';
-import logo from '../../assets/logo-white.png';
-import billboard from '../../assets/billboard-logo.png';
 import axios from 'axios';
 import {useState, useEffect} from "react";
 import sortData from "../../helpers/sortData.js"
 import calculateWaarde from "../../helpers/calculateWaarde.js";
 import calculateUnit from "../../helpers/calculateUnit.js";
+import ButtonPortfolio from "../../components/button/ButtonPortfolio.jsx";
+import InputPortfolio from "../../components/input/InputPortfolio.jsx";
 
 function PortfolioPage() {
 
@@ -81,6 +81,15 @@ function PortfolioPage() {
         xrp: '',
     })
 
+    const [isButtonFetched, setIsButtonFetched] = useState({
+        bitcoin: false,
+        ethereum: false,
+        polkadot: false,
+        solana: false,
+        dogecoin: false,
+        xrp: false,
+    });
+
 
 
 
@@ -91,7 +100,7 @@ function PortfolioPage() {
         })
     }
 
-    const [isButtonFetched, setIsButtonFetched] = useState(false);
+    /*const [isButtonFetched, setIsButtonFetched] = useState(false);*/
 
     const fetchWalletData = async (blockchain) => {
 
@@ -108,8 +117,13 @@ function PortfolioPage() {
             );
             console.log(response)
             setCryptoBalance({...cryptoBalance, [blockchain]: response.data[0],})
-            setIsButtonFetched(true)
 
+           /* setIsButtonFetched(true)*/
+
+            setIsButtonFetched((prevState) => ({
+                ...prevState,
+                [blockchain]: true,
+            }));
 
         } catch (e) {
             console.error(e);
@@ -129,18 +143,19 @@ function PortfolioPage() {
                     {/* Bitcoin: bc1qjasf9z3h7w3jspkhtgatgpyvvzgpa2wwd2lr0eh5tx44reyn2k7sfc27a4 */}
                     <div>
 
-                        <input
-                            type="text"
-                            value={walletAdress.bitcoin}
-                            placeholder="Public Key Bitcoin:"
-                            onChange={(e) => handleInputChange(e, 'bitcoin')}
+                        <InputPortfolio
+                        handleInputChange={handleInputChange}
+                        walletAdress = {walletAdress.bitcoin}
+                        blockchain = "bitcoin"
+                        placeholder = "Public Key Bitcoin"
                         />
 
-                        <button
-                            onClick={() => fetchWalletData('bitcoin')}
-                        >
-                            {isButtonFetched ? 'Wijzigen':'Invoeren'}
-                        </button>
+
+                        <ButtonPortfolio
+                            isButtonFetched= {isButtonFetched}
+                            fetchWalletData= {fetchWalletData}
+                            blockchain = "bitcoin"
+                        />
 
                         {cryptoBalance.bitcoin ? (
                             <p> Balans: {calculateUnit('bitcoin',cryptoBalance.bitcoin?.confirmed_balance || "0")} </p>
@@ -162,18 +177,18 @@ function PortfolioPage() {
 
                     {/* Ethereum: 0x0a4c79ce84202b03e95b7a692e5d728d83c44c76*/}
                     <div>
-                        <input
-                            type="text"
-                            value={walletAdress.ethereum}
-                            placeholder="Public Key Ethereum:"
-                            onChange={(e) => handleInputChange(e, 'ethereum')}
+                        <InputPortfolio
+                            handleInputChange={handleInputChange}
+                            walletAdress = {walletAdress.ethereum}
+                            blockchain = "ethereum"
+                            placeholder = "Public Key Ethereum"
                         />
 
-                        <button
-                            onClick={() => fetchWalletData('ethereum')}
-                        > {isButtonFetched ? 'Wijzigen':'Invoeren'}
-                        </button>
-
+                        <ButtonPortfolio
+                            isButtonFetched={isButtonFetched}
+                            fetchWalletData={fetchWalletData}
+                            blockchain="ethereum"
+                        />
 
                         {cryptoBalance.ethereum ? (
                             <p> Balans: {calculateUnit('ethereum',cryptoBalance.ethereum?.confirmed_balance || "0")} </p>
@@ -195,17 +210,18 @@ function PortfolioPage() {
 
                     {/*Ripple: rMhkqz3DeU7GUUJKGZofusbrTwZe6bDyb1 */}
                     <div>
-                        <input
-                            type="text"
-                            value={walletAdress.xrp}
-                            placeholder="Public Key Ripple:"
-                            onChange={(e) => handleInputChange(e, 'xrp')}
+                        <InputPortfolio
+                            handleInputChange={handleInputChange}
+                            walletAdress = {walletAdress.xrp}
+                            blockchain = "xrp"
+                            placeholder = "Public Key XRP"
                         />
 
-                        <button
-                            onClick={() => fetchWalletData('xrp')}
-                        > {isButtonFetched ? 'Wijzigen':'Invoeren'}
-                        </button>
+                        <ButtonPortfolio
+                            isButtonFetched= {isButtonFetched}
+                            fetchWalletData= {fetchWalletData}
+                            blockchain = "xrp"
+                        />
 
 
                         {cryptoBalance.xrp ? (
@@ -228,17 +244,18 @@ function PortfolioPage() {
 
                     {/*Solona: 8PjJTv657aeN9p5R2WoM6pPSz385chvTTytUWaEjSjkq */}
                     <div>
-                        <input
-                            type="text"
-                            value={walletAdress.solana}
-                            placeholder="Public Key Solana:"
-                            onChange={(e) => handleInputChange(e, 'solana')}
+                        <InputPortfolio
+                            handleInputChange={handleInputChange}
+                            walletAdress = {walletAdress.solana}
+                            blockchain = "solana"
+                            placeholder = "Public Key Solana"
                         />
 
-                        <button
-                            onClick={() => fetchWalletData('solana')}
-                        > {isButtonFetched ? 'Wijzigen':'Invoeren'}
-                        </button>
+                        <ButtonPortfolio
+                            isButtonFetched= {isButtonFetched}
+                            fetchWalletData= {fetchWalletData}
+                            blockchain = "solana"
+                        />
 
 
                         {cryptoBalance.solana ? (
@@ -260,17 +277,18 @@ function PortfolioPage() {
 
                     {/*Dogecoin: D94tDRhr4X9Tjgr8MG1Nrd5ARpesPAM7ZB*/}
                     <div>
-                        <input
-                            type="text"
-                            value={walletAdress.dogecoin}
-                            placeholder="Public Key DogeCoin:"
-                            onChange={(e) => handleInputChange(e, 'dogecoin')}
+                        <InputPortfolio
+                            handleInputChange={handleInputChange}
+                            walletAdress = {walletAdress.dogecoin}
+                            blockchain = "dogecoin"
+                            placeholder = "Public Key Dogecoin"
                         />
 
-                        <button
-                            onClick={() => fetchWalletData('dogecoin')}
-                        > {isButtonFetched ? 'Wijzigen':'Invoeren'}
-                        </button>
+                        <ButtonPortfolio
+                            isButtonFetched= {isButtonFetched}
+                            fetchWalletData= {fetchWalletData}
+                            blockchain = "dogecoin"
+                        />
 
 
                         {cryptoBalance.dogecoin ? (
@@ -294,17 +312,18 @@ function PortfolioPage() {
 
                     {/*Polkadot: 11YYjhjmjwn3csohNDLHa9Kr38nY8kd736a7TkPVagXoRus */}
                     <div>
-                        <input
-                            type="text"
-                            value={walletAdress.polkadot}
-                            placeholder="Public Key Ethereum:"
-                            onChange={(e) => handleInputChange(e, 'polkadot')}
+                        <InputPortfolio
+                            handleInputChange={handleInputChange}
+                            walletAdress = {walletAdress.polkadot}
+                            blockchain = "polkadot"
+                            placeholder = "Public Key Polkadot"
                         />
 
-                        <button
-                            onClick={() => fetchWalletData('polkadot')}
-                        > {isButtonFetched ? 'Wijzigen':'Invoeren'}
-                        </button>
+                        <ButtonPortfolio
+                            isButtonFetched= {isButtonFetched}
+                            fetchWalletData= {fetchWalletData}
+                            blockchain = "polkadot"
+                        />
 
 
                         {cryptoBalance.polkadot ? (
@@ -312,6 +331,7 @@ function PortfolioPage() {
                         ) : (
                             <p> 0 DOT </p>
                         )}
+
                         {cryptoStats.length > 0 && (
                             <>
                                 <img src={cryptoStats[5].logo} className="coinImage" alt="Coins"/>
