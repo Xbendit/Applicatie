@@ -1,31 +1,40 @@
-import './LoginPage.css';
-import React, {useContext,useState} from 'react';
+import './RegisterPage.css';
+import React, {useState} from 'react';
+
 import calculateReadTimeRemove from '../../helpers/calculateReadTime[Remove].js';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import InputRemove from '../../components/input/Input[remove].jsx';
 import ButtonRemove from '../../components/button/Button[remove].jsx';
 import axios from 'axios';
-import {jwtDecode} from "jwt-decode";
-import {AuthContext} from "../../context/AuthContext.jsx";
 
 
 /*/!*naam app voor database: cryptoapp*!/
 'X-Api-Key':cryptoapp:0EGScyLvFHmmJFd0N4qG */
 
-function LoginPage() {
+/*email
+    :
+    "vanrossumben@gmail.com"
+password
+    :
+    "12345678"
+username
+    :
+    "benno"*/
+
+function RegisterPage() {
+    const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const {login} = useContext(AuthContext);
-
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log("Inlog gegevens:", { password, username });
+        console.log("Registratiegegevens:", { email, password, username });
 
         try {
-            const response = await axios.post('https://api.datavortex.nl/cryptoapp/users/authenticate',
+            await axios.post('https://api.datavortex.nl/cryptoapp/users',
                 {
+                    email,
                     password,
                     username,
                     authorities: [
@@ -41,18 +50,13 @@ function LoginPage() {
                     }
                 }
             );
-            console.log(response)
-            console.log("Gebruiker succesvol ingelogt")
 
-
-            login(response.data.jwt)
-
-
+            console.log("Gebruiker succesvol geregistreerd")
             // Let op: omdat we geen axios Canceltoken gebruiken zul je hier een memory-leak melding krijgen.
             // Om te zien hoe je een canceltoken implementeerd kun je de bonus-branch bekijken!
 
             // als alles goed gegaan is, linken we dyoor naar de login-pagina
-            navigate('/portfolio');
+            navigate('/login');
         } catch(e) {
             console.error("er ging iets mis", e);
         }
@@ -63,26 +67,33 @@ function LoginPage() {
             <div className="inner-content-container__text-restriction">
                 <form onSubmit={handleSubmit}>
 
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
+                <input
+                    type="text"
+                    placeholder="Emailadress"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
 
-                    <input
-                        type="password"
-                        placeholder="Wachtwoord"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
 
-                    <button
-                        type="submit"
-                        className="form-button"
-                    >
-                        Registreren
-                    </button>
+                <input
+                    type="password"
+                    placeholder="Wachtwoord"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+
+                <button
+                    type="submit"
+                    className="form-button"
+                >
+                    Registreren
+                </button>
 
                 </form>
             </div>
@@ -90,4 +101,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage;
+export default RegisterPage;

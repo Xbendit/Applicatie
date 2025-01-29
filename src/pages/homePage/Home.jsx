@@ -1,10 +1,9 @@
 import './Home.css';
-import logo from '../../assets/logo-white.png';
-import billboard from '../../assets/billboard-logo.png';
 import axios from 'axios';
 import {useState,useEffect} from "react";
 import sortData from "../../helpers/sortData.js"
 import CryptoInfoHome from "../../components/cryptoInfoHome/CryptoInfoHome.jsx";
+import ButtonSort from "../../components/button/ButtonSort.jsx";
 
 
 function Home() {
@@ -56,31 +55,46 @@ function Home() {
         setCryptoStats((sortedStats))
 
     }
+    function sortMarketCap () {
+        const sortedStats = sortData(cryptoStats,"marketCapRank","asc");
+        setCryptoStats((sortedStats))
+
+    }
 
 
 
-    return (<>
+    return (
+        <>
+            <body>
         <header className="header outer-content-container">
             <div data-layer="BitGo" className="Bitgo">BitGo</div>
         </header>
-        <section className="section-home-branding outer-content-container">
-            <div className="inner-content-container__text-restriction">
-                <h1>Hier worden de 5 belangrijkste crypto's weergegeven</h1>
 
-                <button
+            <section className="section-home-branding outer-content-container">
+
+                <p>Market Cap</p>
+                <ButtonSort
+                    onClick={sortMarketCap}
+                    className={"buttonMC"}
+                    >Sorteer MC
+                </ButtonSort>
+
+                <p>Price</p>
+                <ButtonSort
                     onClick={sortPrice}
-                    className="button1"
-                >Sorteer prijs
-                </button>
+                    className="buttonPrice"
+                >Sorteer Price
+                </ButtonSort>
 
-                <button
+                <p>24h %</p>
+                <ButtonSort
                     onClick={sortPercent}
-                    className="button2"
-                >Sorteer 24h
-                </button>
+                    className="buttonPercentage"
+                >Sorteer 24h%
+                </ButtonSort>
 
-            </div>
-        </section>
+
+            </section>
 
             <section className="listcoins">
                 {cryptoStats.length > 0 ? (
@@ -88,7 +102,7 @@ function Home() {
                         {cryptoStats.map((coin) =>(
                                 <CryptoInfoHome
                                     key = {coin.symbol}
-                                    marketCapRank = {coin.marketCapRank}
+                                    marketCapRank = {coin.name}
                                     image = {coin.logo}
                                     marketCap = {coin.marketCap}
                                     price = {coin.price}
@@ -100,6 +114,7 @@ function Home() {
                     <p>Bezig met laden.. </p>
                 )}
         </section>
+            </body>
     </>
     );
 }

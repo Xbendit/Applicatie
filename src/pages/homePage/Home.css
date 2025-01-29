@@ -1,3 +1,6 @@
+.body {
+    background-color: var(--color-secondary);
+}
 .header {
     color: white;
     background-color: var(--color-secondary);
@@ -8,9 +11,11 @@
 }
 
 .section-home-branding {
-    background-color: var(--color-white);
+    background-color: var(--color-secondary);
     text-align: center;
+    color: white;
 }
+
 h1{
     color: var(--color-white);
 }
@@ -23,19 +28,39 @@ h1{
 }
 .coinitem {
     display: flex;
-    border: 2px solid black;
-    justify-content: space-around;
+    align-items: center; /* Zorgt ervoor dat alle items verticaal gecentreerd zijn */
+    justify-content: space-between; /* Verdeel de kolommen evenredig */
+    padding: 10px;
+    margin: 10px 10px 0 10px ;
+    gap: 10px;
+    background-color: var(--color-tertiary);
+    border-radius: 5px;
+}
 
-}
-.coinprice{
+ul{
     display: flex;
-    justify-content: flex-start;
-    border: 2px solid black;
+    flex-direction: column;
 }
+
+.coinitem p {
+    flex: 1; /* Zorgt ervoor dat elk item dezelfde breedte heeft */
+    text-align: center; /* Centreer de tekst */
+    font-size: 20px;
+    color: var(--color-white) ;
+}
+
 .listcoins{
-    border: 2px solid black;;
+    background-color: var(--color-secondary);
 }
+
 .coinImage{
-    width: auto;
+    width: 50px;
     height: 50px;
+    object-fit: contain;
+}
+
+
+.coinprice, .marketcap {
+    min-width: 150px; /* Voorkomt dat de tekst verspringt */
+    text-align: right;
 }

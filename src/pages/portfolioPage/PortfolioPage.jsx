@@ -66,34 +66,7 @@ function PortfolioPage() {
 
     }
 
-    /*'bitcoin,ethereum,polkadot,solana,cardano,ripple'*/
 
-    /*const [cryptoBalance, setCryptoBalance] = useState({
-        bitcoin: null,
-        ethereum: null,
-        polkadot: null,
-        solana: null,
-        dogecoin: null,
-        xrp: null,
-    })
-
-    const [walletAdress, setwalletAdress] = useState({
-        bitcoin: '',
-        ethereum: '',
-        polkadot: '',
-        solana: '',
-        dogecoin: '',
-        xrp: '',
-    })
-
-    const [isButtonFetched, setIsButtonFetched] = useState({
-        bitcoin: false,
-        ethereum: false,
-        polkadot: false,
-        solana: false,
-        dogecoin: false,
-        xrp: false,
-    });*/
 
 
 
