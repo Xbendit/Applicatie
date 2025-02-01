@@ -26,16 +26,29 @@ h1{
     font-weight: bold;
 
 }
+
 .coinitem {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr; /* Zorgt ervoor dat alles goed onder de header uitlijnt */
+    align-items: center;
+    padding: 10px;
+    background-color: var(--color-tertiary);
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+/*.coinitem {
     display: flex;
-    align-items: center; /* Zorgt ervoor dat alle items verticaal gecentreerd zijn */
-    justify-content: space-between; /* Verdeel de kolommen evenredig */
+    align-items: center; !* Zorgt ervoor dat alle items verticaal gecentreerd zijn *!
+    justify-content: space-between; !* Verdeel de kolommen evenredig *!
     padding: 10px;
     margin: 10px 10px 0 10px ;
     gap: 10px;
     background-color: var(--color-tertiary);
     border-radius: 5px;
-}
+}*/
 
 ul{
     display: flex;
@@ -59,8 +72,48 @@ ul{
     object-fit: contain;
 }
 
+.coinList {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
 
 .coinprice, .marketcap {
     min-width: 150px; /* Voorkomt dat de tekst verspringt */
     text-align: right;
 }
+
+.coinHeader {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 1fr 2fr 1fr; /* Elke tekst krijgt een button ernaast */
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-secondary);
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/*
+.buttonMC,
+.buttonPrice,
+.buttonPercentage {
+    background-color: var(--color-primary);
+    border: none;
+    padding: 5px 10px;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.buttonMC:hover,
+.buttonPrice:hover,
+.buttonPercentage:hover {
+    background-color: var(--color-primary);
+    cursor: pointer;
+    border: 1px solid var(--color-secondary-light);
+}*/

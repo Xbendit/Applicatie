@@ -21,7 +21,7 @@ function Navigation() {
                     <li><Link to="/login">Inloggen</Link></li>
                     <li><Link to="/register">Registreren</Link></li>
                 </ul>
-                <button onClick={logout} >Uitloggen</button>
+                <button className="login" onClick={logout} >Uitloggen</button>
             </div>
         </nav>
     );

@@ -2,10 +2,6 @@ import './PortfolioPage.css';
 import axios from 'axios';
 import {useState, useEffect} from "react";
 import sortData from "../../helpers/sortData.js"
-import calculateWaarde from "../../helpers/calculateWaarde.js";
-import calculateUnit from "../../helpers/calculateUnit.js";
-import ButtonPortfolio from "../../components/button/ButtonPortfolio.jsx";
-import InputPortfolio from "../../components/input/InputPortfolio.jsx";
 import CryptoInfoPortfolio from "../../components/cryptoInfoPortfolio/CryptoInfoPortfolio.jsx";
 
 function PortfolioPage() {
@@ -111,12 +107,10 @@ function PortfolioPage() {
 
     return (<>
             <header className="header outer-content-container">
-                <div data-layer="BitGo" className="Bitgo">BitGo</div>
+                <div data-layer="BitGo" className="Bitgo">Portfolio</div>
             </header>
-            <section className="section-home-branding outer-content-container">
-                <div className="inner-content-container__text-restriction">
-                    <h1>Hier worden de 5 belangrijkste crypto's weergegeven</h1>
 
+            <section className="section-home-branding outer-content-container">
 
                     <div className="portfolio-page">
                         {['bitcoin', 'ethereum', 'polkadot', 'solana', 'dogecoin', 'xrp'].map((blockchain) => {
@@ -145,228 +139,7 @@ function PortfolioPage() {
                             );
                         })}
 
-
-                        {/*{['bitcoin', 'ethereum', 'polkadot', 'solana', 'dogecoin', 'xrp'].map((blockchain) => (
-                            <CryptoInfoPortfolio
-                                key={blockchain}
-                                blockchain={blockchain}
-                                walletAdress={walletAdress[blockchain] || ''}
-                                handleInputChange={handleInputChange}
-                                fetchWalletData={fetchWalletData}
-                                isButtonFetched={isButtonFetched[blockchain]}
-                                cryptoBalance={cryptoBalance[blockchain]}
-                                cryptoStats={cryptoStats[blockchain]}
-                                calculateUnit={calculateUnit}
-                                calculateWaarde={calculateWaarde}
-                            />
-                        ))}*/}
                     </div>
-
-
-                    {/*Bitcoin: bc1qjasf9z3h7w3jspkhtgatgpyvvzgpa2wwd2lr0eh5tx44reyn2k7sfc27a4
-                    <div>
-
-                        <InputPortfolio
-                        handleInputChange={handleInputChange}
-                        walletAdress = {walletAdress.bitcoin}
-                        blockchain = "bitcoin"
-                        placeholder = "Public Key Bitcoin"
-                        />
-
-
-                        <ButtonPortfolio
-                            isButtonFetched= {isButtonFetched}
-                            fetchWalletData= {fetchWalletData}
-                            blockchain = "bitcoin"
-                        />
-
-                        {cryptoBalance.bitcoin ? (
-                            <p> Balans: {calculateUnit('bitcoin',cryptoBalance.bitcoin?.confirmed_balance || "0")} </p>
-                        ) : (
-                            <p> 0 BTC </p>
-                        )}
-
-                        {cryptoStats.length > 0 && (
-                            <>
-                                <img src={cryptoStats[0].logo} className="coinImage" alt="Coins"/>
-                                <p>${cryptoStats[0].price}</p>
-                                <p>${calculateWaarde(calculateUnit('bitcoin', cryptoBalance.bitcoin?.confirmed_balance || "0"), cryptoStats[0].price)}</p>
-                                <p className="coinchange">{cryptoStats[0].changePercent}%</p>
-                            </>
-                        )}
-
-
-                    </div>
-
-                     Ethereum: 0x0a4c79ce84202b03e95b7a692e5d728d83c44c76
-                    <div>
-                        <InputPortfolio
-                            handleInputChange={handleInputChange}
-                            walletAdress = {walletAdress.ethereum}
-                            blockchain = "ethereum"
-                            placeholder = "Public Key Ethereum"
-                        />
-
-                        <ButtonPortfolio
-                            isButtonFetched={isButtonFetched}
-                            fetchWalletData={fetchWalletData}
-                            blockchain="ethereum"
-                        />
-
-                        {cryptoBalance.ethereum ? (
-                            <p> Balans: {calculateUnit('ethereum',cryptoBalance.ethereum?.confirmed_balance || "0")} </p>
-                        ) : (
-                            <p> 0 ETH </p>
-                        )}
-
-                        {cryptoStats.length > 0 && (
-                            <>
-                                <img src={cryptoStats[1].logo} className="coinImage" alt="Coins"/>
-                                <p>${cryptoStats[1].price}</p>
-                                <p>${calculateWaarde(calculateUnit('ethereum', cryptoBalance.ethereum?.confirmed_balance || "0"), cryptoStats[1].price)}</p>
-                                <p className="coinchange">{cryptoStats[1].changePercent}%</p>
-                            </>
-                        )}
-
-                    </div>
-
-
-                    Ripple: rMhkqz3DeU7GUUJKGZofusbrTwZe6bDyb1
-                    <div>
-                        <InputPortfolio
-                            handleInputChange={handleInputChange}
-                            walletAdress = {walletAdress.xrp}
-                            blockchain = "xrp"
-                            placeholder = "Public Key XRP"
-                        />
-
-                        <ButtonPortfolio
-                            isButtonFetched= {isButtonFetched}
-                            fetchWalletData= {fetchWalletData}
-                            blockchain = "xrp"
-                        />
-
-
-                        {cryptoBalance.xrp ? (
-                            <p> Balans: {calculateUnit('xrp',cryptoBalance.xrp?.confirmed_balance || "0")} </p>
-                        ) : (
-                            <p> 0 XRP </p>
-                        )}
-
-                        {cryptoStats.length > 0 && (
-                            <>
-                                <img src={cryptoStats[2].logo} className="coinImage" alt="Coins"/>
-                                <p>${cryptoStats[2].price}</p>
-                                <p>${calculateWaarde(calculateUnit('xrp', cryptoBalance.xrp?.confirmed_balance || "0"), cryptoStats[2].price)}</p>
-                                <p className="coinchange">{cryptoStats[2].changePercent}%</p>
-                            </>
-                        )}
-
-                    </div>
-
-
-                    Solona: 8PjJTv657aeN9p5R2WoM6pPSz385chvTTytUWaEjSjkq
-                    <div>
-                        <InputPortfolio
-                            handleInputChange={handleInputChange}
-                            walletAdress = {walletAdress.solana}
-                            blockchain = "solana"
-                            placeholder = "Public Key Solana"
-                        />
-
-                        <ButtonPortfolio
-                            isButtonFetched= {isButtonFetched}
-                            fetchWalletData= {fetchWalletData}
-                            blockchain = "solana"
-                        />
-
-
-                        {cryptoBalance.solana ? (
-                            <p> Balans: {calculateUnit('solana',cryptoBalance.solana?.confirmed_balance || "0")} </p>
-                        ) : (
-                            <p> 0 SOL </p>
-                        )}
-
-                        {cryptoStats.length > 0 && (
-                            <>
-                                <img src={cryptoStats[3].logo} className="coinImage" alt="Coins"/>
-                                <p>${cryptoStats[3].price}</p>
-                                <p>${calculateWaarde(calculateUnit('solana', cryptoBalance.solana?.confirmed_balance || "0"), cryptoStats[3].price)}</p>
-                                <p className="coinchange">{cryptoStats[3].changePercent}%</p>
-                            </>
-                        )}
-
-                    </div>
-
-                    Dogecoin: D94tDRhr4X9Tjgr8MG1Nrd5ARpesPAM7ZB
-                    <div>
-                        <InputPortfolio
-                            handleInputChange={handleInputChange}
-                            walletAdress = {walletAdress.dogecoin}
-                            blockchain = "dogecoin"
-                            placeholder = "Public Key Dogecoin"
-                        />
-
-                        <ButtonPortfolio
-                            isButtonFetched= {isButtonFetched}
-                            fetchWalletData= {fetchWalletData}
-                            blockchain = "dogecoin"
-                        />
-
-
-                        {cryptoBalance.dogecoin ? (
-                            <p> Balans: {calculateUnit('dogecoin',cryptoBalance.dogecoin?.confirmed_balance || "0")} </p>
-                        ) : (
-                            <p> 0 DOGE </p>
-                        )}
-
-                        {cryptoStats.length > 0 && (
-                            <>
-                                <img src={cryptoStats[4].logo} className="coinImage" alt="Coins"/>
-                                <p>${cryptoStats[4].price}</p>
-                                <p>${calculateWaarde(calculateUnit('dogecoin', cryptoBalance.dogecoin?.confirmed_balance || "0"), cryptoStats[4].price)}</p>
-                                <p className="coinchange">{cryptoStats[4].changePercent}%</p>
-                            </>
-                        )}
-
-                    </div>
-
-
-
-                    Polkadot: 11YYjhjmjwn3csohNDLHa9Kr38nY8kd736a7TkPVagXoRus
-                    <div>
-                        <InputPortfolio
-                            handleInputChange={handleInputChange}
-                            walletAdress = {walletAdress.polkadot}
-                            blockchain = "polkadot"
-                            placeholder = "Public Key Polkadot"
-                        />
-
-                        <ButtonPortfolio
-                            isButtonFetched= {isButtonFetched}
-                            fetchWalletData= {fetchWalletData}
-                            blockchain = "polkadot"
-                        />
-
-
-                        {cryptoBalance.polkadot ? (
-                            <p> Balans: {calculateUnit('polkadot',cryptoBalance.polkadot?.confirmed_balance || "0")} </p>
-                        ) : (
-                            <p> 0 DOT </p>
-                        )}
-
-                        {cryptoStats.length > 0 && (
-                            <>
-                                <img src={cryptoStats[5].logo} className="coinImage" alt="Coins"/>
-                                <p>${cryptoStats[5].price}</p>
-                                <p>${calculateWaarde(calculateUnit('polkadot', cryptoBalance.polkadot?.confirmed_balance || "0"), cryptoStats[5].price)}</p>
-                                <p className="coinchange">{cryptoStats[5].changePercent}%</p>
-                            </>
-                        )}
-
-                    </div>*/}
-
-                </div>
 
             </section>
 

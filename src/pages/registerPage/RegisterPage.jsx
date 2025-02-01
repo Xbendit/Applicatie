@@ -46,7 +46,7 @@ function RegisterPage() {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-Api-Key': 'cryptoapp:'
+
                     }
                 }
             );

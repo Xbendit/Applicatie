@@ -1,11 +1,13 @@
 import React from 'react';
+import './ButtonPortfolio.css'
 
-function ButtonPortfolio({ isButtonFetched, fetchWalletData, blockchain }){
+function ButtonPortfolio({ isButtonFetched, fetchWalletData, blockchain, className }){
     return (
         <button
             onClick={() => fetchWalletData(blockchain)}
+            className= {`buttonportfolio ${className}`}
         >
-            {isButtonFetched [blockchain] ? 'Wijzigen' : 'Invoeren'}
+            {isButtonFetched ? 'Wijzigen' : 'Invoeren'}
         </button>
     );
 };

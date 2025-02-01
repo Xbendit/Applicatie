@@ -10,8 +10,43 @@
 .post-list {
     list-style: none;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     row-gap: 16px;
     column-gap: 16px;
     flex-wrap: wrap;
 }
+.crypto-coin {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--color-tertiary);
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    color: white;
+    gap: 10px;
+}
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.portfolio-input {
+    width: 150px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #ccc;
+}
+
+.portfolio-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 70px;
+    height: 35px;
+}
+

@@ -36,4 +36,8 @@ Hij mag krimpen als het scherm minder breed wordt, maar niet groeien als er meer
   text-align: center;
   padding: 32px 0;
   font-weight: 600;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
 }
