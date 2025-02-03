@@ -2,10 +2,11 @@ import './RegisterPage.css';
 import React, {useState} from 'react';
 
 import calculateReadTimeRemove from '../../helpers/calculateReadTime[Remove].js';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import InputRemove from '../../components/input/Input[remove].jsx';
 import ButtonRemove from '../../components/button/Button[remove].jsx';
 import axios from 'axios';
+import ButtonSort from "../../components/button/ButtonSort.jsx";
 
 
 /*/!*naam app voor database: cryptoapp*!/
@@ -46,7 +47,7 @@ function RegisterPage() {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-
+                        'X-Api-Key': 'cryptoapp:0EGScyLvFHmmJFd0N4qG'
                     }
                 }
             );
@@ -63,41 +64,54 @@ function RegisterPage() {
     }
 
     return (
-        <section className="new-post-section outer-content-container">
-            <div className="inner-content-container__text-restriction">
+        <section className="register-section">
+
+            <div className="register-inner">
+                <header>Register</header>
                 <form onSubmit={handleSubmit}>
 
-                <input
-                    type="text"
-                    placeholder="Emailadress"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                    <div className='input-register'>
 
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
+                        <div className='text'>Emailadres:</div>
+                        <input
+                            type="text"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <div className='text'>Username:</div>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <div className='text'>Password:</div>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
 
-                <input
-                    type="password"
-                    placeholder="Wachtwoord"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                        <div className='button-register'>
 
-                <button
-                    type="submit"
-                    className="form-button"
-                >
-                    Registreren
-                </button>
+                            <ButtonSort
+                                onClick="submit"
+                                className='registerbutton'
 
+                            >
+                                Registreren
+                            </ButtonSort>
+
+                        </div>
+                    </div>
                 </form>
+                <div>
+                    <p>Heb je al een account?</p>
+                    <p>Je kunt je <Link to="/login">hier</Link> inloggen.</p>
+                </div>
             </div>
+
         </section>
+
     );
 }
 

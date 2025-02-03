@@ -26,7 +26,7 @@ function App() {
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
             </main>
-            <footer className="footer-navigation outer-content-container">
+            <footer className="footer-BitBen">
                 BitGO &copy; 2025
             </footer>
         </>

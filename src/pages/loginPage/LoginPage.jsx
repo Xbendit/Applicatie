@@ -1,12 +1,10 @@
 import './LoginPage.css';
-import React, {useContext,useState} from 'react';
-import calculateReadTimeRemove from '../../helpers/calculateReadTime[Remove].js';
+import React, {useContext, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import InputRemove from '../../components/input/Input[remove].jsx';
-import ButtonRemove from '../../components/button/Button[remove].jsx';
 import axios from 'axios';
-import {jwtDecode} from "jwt-decode";
 import {AuthContext} from "../../context/AuthContext.jsx";
+import '../../components/button/ButtonSort.jsx'
+import ButtonSort from "../../components/button/ButtonSort.jsx";
 
 
 /*/!*naam app voor database: cryptoapp*!/
@@ -21,7 +19,7 @@ function LoginPage() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log("Inlog gegevens:", { password, username });
+        console.log("Inlog gegevens:", {password, username});
 
         try {
             const response = await axios.post('https://api.datavortex.nl/cryptoapp/users/authenticate',
@@ -37,7 +35,7 @@ function LoginPage() {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-
+                        'X-Api-Key': 'cryptoapp:0EGScyLvFHmmJFd0N4qG'
                     }
                 }
             );
@@ -53,36 +51,45 @@ function LoginPage() {
 
             // als alles goed gegaan is, linken we dyoor naar de login-pagina
             navigate('/portfolio');
-        } catch(e) {
+        } catch (e) {
             console.error("er ging iets mis", e);
         }
     }
 
     return (
-        <section className="new-post-section outer-content-container">
-            <div className="inner-content-container__text-restriction">
+        <section className="login-section">
+
+            <div className="login-inner">
+
+                <header>Login</header>
+
                 <form onSubmit={handleSubmit}>
 
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
+                    <div className='input-login'>
 
-                    <input
-                        type="password"
-                        placeholder="Wachtwoord"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                        <div className='text'>Username:</div>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <div className='text'>Password:</div>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
 
-                    <button
-                        type="submit"
-                        className="form-button"
-                    >
-                        Registreren
-                    </button>
+                    <div className='button-login'>
+                        <ButtonSort
+                            onClick="submit"
+                            className='loginbutton'
+
+                        >
+                            Login
+                        </ButtonSort>
+                    </div>
 
                 </form>
             </div>
