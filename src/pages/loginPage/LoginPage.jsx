@@ -1,14 +1,11 @@
 import './LoginPage.css';
 import React, {useContext, useState} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import {AuthContext} from "../../context/AuthContext.jsx";
 import '../../components/button/ButtonSort.jsx'
 import ButtonSort from "../../components/button/ButtonSort.jsx";
 
-
-/*/!*naam app voor database: cryptoapp*!/
-'X-Api-Key':cryptoapp:0EGScyLvFHmmJFd0N4qG */
 
 function LoginPage() {
     const [username, setUsername] = useState('');
@@ -35,21 +32,14 @@ function LoginPage() {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-Api-Key': 'cryptoapp:0EGScyLvFHmmJFd0N4qG'
+                        'X-Api-Key': import.meta.env.VITE_API_KEY_BACKEND
                     }
                 }
             );
             console.log(response)
             console.log("Gebruiker succesvol ingelogt")
-
-
             login(response.data.jwt)
 
-
-            // Let op: omdat we geen axios Canceltoken gebruiken zul je hier een memory-leak melding krijgen.
-            // Om te zien hoe je een canceltoken implementeerd kun je de bonus-branch bekijken!
-
-            // als alles goed gegaan is, linken we dyoor naar de login-pagina
             navigate('/portfolio');
         } catch (e) {
             console.error("er ging iets mis", e);

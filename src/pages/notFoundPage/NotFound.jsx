@@ -1,6 +1,6 @@
 import './NotFound.css';
 import {useNavigate} from 'react-router-dom';
-import ButtonRemove from '../../components/button/Button[remove].jsx';
+import ButtonNav from '../../components/button/ButtonNav.jsx';
 
 function NotFound() {
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ function NotFound() {
                 <h1>404</h1>
                 <h2>De pagina waar je naar zoekt bestaat niet</h2>
                 <span>
-                    <ButtonRemove type="button" variant="primary" onClick={() => navigate('/')}>Terug naar home</ButtonRemove>
+                    <ButtonNav type="button" variant="primary" onClick={() => navigate('/')}>Terug naar home</ButtonNav>
                 </span>
             </div>
         </section>

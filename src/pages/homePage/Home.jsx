@@ -71,9 +71,6 @@ function Home() {
                 <div data-layer="BitGo" className="Bitgo">BitGo</div>
             </header>
 
-            {/*<section className="section-home-branding outer-content-container">
-            </section>*/}
-
             <section className="listcoins">
 
                 <div className="coinHeader">
@@ -98,7 +95,6 @@ function Home() {
                     >Sorteer 24h%
                     </ButtonSort>
                 </div>
-
 
 
                 {cryptoStats.length > 0 ? (
