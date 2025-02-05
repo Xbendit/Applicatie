@@ -34,6 +34,7 @@ function AuthContextProvider({children}) {
         console.log(decoded)
         void fetchUserData(decoded.sub, JWT, '/portfolio');
 
+
     }
 
     function logout() {
@@ -51,7 +52,7 @@ function AuthContextProvider({children}) {
 
     async function fetchUserData(id, JWT) {
         try {
-            // haal gebruikersdata op met de token en id van de gebruiker
+
             const result = await axios.get(`https://api.datavortex.nl/cryptoapp/users/${id}`, {
                 headers: {
                     "Content-Type": "application/json",
@@ -59,7 +60,7 @@ function AuthContextProvider({children}) {
                 },
             });
             console.log(result)
-// zet de gegevens in de state
+
             toggleIsAuth({
                 ...isAuth,
                 isAuth: true,
@@ -70,12 +71,11 @@ function AuthContextProvider({children}) {
                 status: 'done',
             });
             console.log(isAuth)
-            /*if (redirectUrl) {
-                navigate(redirectUrl);
-            }*/
+            navigate('/portfolio');
+
         } catch (e) {
             console.error(e);
-            // ging er iets mis? Plaatsen we geen data in de state
+
             toggleIsAuth({
                 isAuth: false,
                 user: null,

@@ -39,7 +39,6 @@ function LoginPage() {
             console.log(response)
             console.log("Gebruiker succesvol ingelogt")
             login(response.data.jwt)
-
             navigate('/portfolio');
         } catch (e) {
             console.error("er ging iets mis", e);
@@ -51,19 +50,19 @@ function LoginPage() {
 
             <div className="login-inner">
 
-                <header>Login</header>
+                <header>Inloggen</header>
 
                 <form onSubmit={handleSubmit}>
 
                     <div className='input-login'>
 
-                        <div className='text'>Username:</div>
+                        <div className='text'>Gebruikersnaam:</div>
                         <input
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
-                        <div className='text'>Password:</div>
+                        <div className='text'>Wachtwoord:</div>
                         <input
                             type="password"
                             value={password}
@@ -77,7 +76,7 @@ function LoginPage() {
                             className='loginbutton'
 
                         >
-                            Login
+                            Inloggen
                         </ButtonSort>
                     </div>
 

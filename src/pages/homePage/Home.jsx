@@ -74,26 +74,30 @@ function Home() {
             <section className="listcoins">
 
                 <div className="coinHeader">
-                    <p>Market Cap</p>
-                    <ButtonSort
-                        onClick={sortMarketCap}
-                        className={"buttonMC"}
-                    >Sorteer MC
-                    </ButtonSort>
 
-                    <p>Price</p>
-                    <ButtonSort
-                        onClick={sortPrice}
-                        className="buttonPrice"
-                    >Sorteer Price
-                    </ButtonSort>
+                    <div className="buttoncon">
+                        <ButtonSort
+                            onClick={sortMarketCap}
+                            className="buttonMC"
+                        >Sorteer op Market Cap
+                        </ButtonSort>
+                    </div>
+                    <div className="buttoncon">
 
-                    <p>24h %</p>
-                    <ButtonSort
-                        onClick={sortPercent}
-                        className="buttonPercentage"
-                    >Sorteer 24h%
-                    </ButtonSort>
+                        <ButtonSort
+                            onClick={sortPrice}
+                            className="buttonPrice"
+                        >Sorteer op Prijs
+                        </ButtonSort>
+                    </div>
+                    <div className="buttoncon">
+
+                        <ButtonSort
+                            onClick={sortPercent}
+                            className="buttonPercentage"
+                        >Sorteer op 24h%
+                        </ButtonSort>
+                    </div>
                 </div>
 
 

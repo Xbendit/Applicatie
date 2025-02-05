@@ -86,7 +86,7 @@ ul{
 
 .coinHeader {
     display: grid;
-    grid-template-columns: 2fr 1fr 2fr 1fr 2fr 1fr; /* Elke tekst krijgt een button ernaast */
+    grid-template-columns: 2fr 2fr 2fr; /* Elke tekst krijgt een button ernaast */
     align-items: center;
     justify-content: center;
     background-color: var(--color-secondary);
