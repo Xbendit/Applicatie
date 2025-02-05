@@ -4,7 +4,7 @@
 
 # BitGo CryptoApp
 
---> Screenshot
+![logo.png](src/assets/Screenshot%202025-02-05%20at%204.58.35 PM.png)
 
 ## Inleiding
 
@@ -43,9 +43,11 @@ Open http://localhost:5173/ om de pagina in de browser te bekijken.
 ## API key's
 Om de code te laten werken is het nodig de volgende API keys toe te voegen aan de code.
 
-In de PortfolioPage.jsx moet de volgende API key toegevoegd worden: -------------
-
-In de LoginPage.jsx en RegisterPage.jsx moet de volgende API key toegevoegd worden: 0EGScyLvFHmmJFd0N4qG
+Maak een .env bestand in de root map en vul de volgende code aan met de API keys te vinden in het bijgeleverde rapport onder het hoofdstuk 'Verantwoordings rapportage' 
+```shell
+VITE_API_KEY=
+VITE_API_KEY_BACKEND=
+```
 
 ## Account gegevens
 

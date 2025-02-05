@@ -46,7 +46,7 @@ function RegisterPage() {
         <section className="register-section">
 
             <div className="register-inner">
-                <header>Register</header>
+                <header>Registreren</header>
                 <form onSubmit={handleSubmit}>
 
                     <div className='input-register'>
@@ -57,13 +57,13 @@ function RegisterPage() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <div className='text'>Username:</div>
+                        <div className='text'>Gebruikersnaam:</div>
                         <input
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
-                        <div className='text'>Password:</div>
+                        <div className='text'>Wachtwoord:</div>
                         <input
                             type="password"
                             value={password}
