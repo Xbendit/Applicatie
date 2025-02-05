@@ -1,26 +1,9 @@
 import './RegisterPage.css';
 import React, {useState} from 'react';
-
-import calculateReadTimeRemove from '../../helpers/calculateReadTime[Remove].js';
 import {Link, useNavigate} from 'react-router-dom';
-import InputRemove from '../../components/input/Input[remove].jsx';
-import ButtonRemove from '../../components/button/Button[remove].jsx';
 import axios from 'axios';
 import ButtonSort from "../../components/button/ButtonSort.jsx";
 
-
-/*/!*naam app voor database: cryptoapp*!/
-'X-Api-Key':cryptoapp:0EGScyLvFHmmJFd0N4qG */
-
-/*email
-    :
-    "vanrossumben@gmail.com"
-password
-    :
-    "12345678"
-username
-    :
-    "benno"*/
 
 function RegisterPage() {
     const [email, setEmail] = useState('');
@@ -47,16 +30,12 @@ function RegisterPage() {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-Api-Key': 'cryptoapp:0EGScyLvFHmmJFd0N4qG'
+                        'X-Api-Key': import.meta.env.VITE_API_KEY_BACKEND
                     }
                 }
             );
 
             console.log("Gebruiker succesvol geregistreerd")
-            // Let op: omdat we geen axios Canceltoken gebruiken zul je hier een memory-leak melding krijgen.
-            // Om te zien hoe je een canceltoken implementeerd kun je de bonus-branch bekijken!
-
-            // als alles goed gegaan is, linken we dyoor naar de login-pagina
             navigate('/login');
         } catch(e) {
             console.error("er ging iets mis", e);

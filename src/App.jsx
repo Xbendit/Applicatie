@@ -1,8 +1,7 @@
-import {Route, Routes } from 'react-router-dom';
+import {Navigate, Route, Routes} from 'react-router-dom';
 import Home from './pages/homePage/Home.jsx';
 import LoginPage from './pages/loginPage/LoginPage.jsx';
 import PortfolioPage from './pages/portfolioPage/PortfolioPage.jsx';
-import PostDetail from './pages/postDetailPage/PostDetail.jsx';
 import RegisterPage from './pages/registerPage/RegisterPage.jsx';
 import './App.css'
 import NotFound from './pages/notFoundPage/NotFound.jsx';
@@ -21,8 +20,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/portfolio" element={isAuth ? <PortfolioPage /> : <Navigation to ="/login"/>} />
-                    <Route path="/posts/:id" element={<PostDetail />} />
+                    <Route path="/portfolio" element={isAuth ? <PortfolioPage /> : <Navigate to ="/login"/>} />
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>
             </main>

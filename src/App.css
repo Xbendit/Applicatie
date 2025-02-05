@@ -30,6 +30,15 @@ Hij mag krimpen als het scherm minder breed wordt, maar niet groeien als er meer
   flex-direction: column;
 }*/
 
+body{
+  display: flex ;
+  flex-direction: column;
+}
+
+main{
+  height: 100vh;
+}
+
 .footer-BitBen{
   background-color: var(--color-secondary);
   color: var(--color-primary);
@@ -40,6 +49,7 @@ Hij mag krimpen als het scherm minder breed wordt, maar niet groeien als er meer
   width: 100%;
   bottom: 0;
   width: 100%;
+  flex-grow: 1;
 
 }
 /*

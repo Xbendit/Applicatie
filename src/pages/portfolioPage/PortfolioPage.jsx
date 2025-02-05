@@ -7,7 +7,6 @@ import CryptoInfoPortfolio from "../../components/cryptoInfoPortfolio/CryptoInfo
 function PortfolioPage() {
 
     const [cryptoStats, setCryptoStats] = useState([])
-
     const [cryptoBalance, setCryptoBalance] = useState({});
     const [walletAdress, setwalletAdress] = useState({});
     const [isButtonFetched, setIsButtonFetched] = useState({});
@@ -23,8 +22,6 @@ function PortfolioPage() {
                         ids: 'bitcoin,ethereum,polkadot,solana,dogecoin,ripple', // Specificeer de crypto's
                     },
                 });
-
-               /* console.log(response.data);*/
 
                 const formattedData = response.data.map((coin) => ({
                     name: coin.name,
@@ -48,8 +45,6 @@ function PortfolioPage() {
 
     },[]);
 
-
-
     function sortPrice() {
         const sortedStats = sortData(cryptoStats, "price", "desc");
         setCryptoStats((sortedStats))
@@ -62,11 +57,6 @@ function PortfolioPage() {
 
     }
 
-
-
-
-
-
     const handleInputChange = (event, blockchain) => {
         setwalletAdress({
             ...walletAdress,
@@ -74,11 +64,10 @@ function PortfolioPage() {
         })
     }
 
-    /*const [isButtonFetched, setIsButtonFetched] = useState(false);*/
 
     const fetchWalletData = async (blockchain) => {
 
-        const API_KEY = '';
+        const API_KEY = import.meta.env.VITE_API_KEY;
         const BASE_URL = 'https://svc.blockdaemon.com'; // Blockdaemon API basis-URL
 
 
@@ -91,8 +80,6 @@ function PortfolioPage() {
             );
             console.log(response)
             setCryptoBalance({...cryptoBalance, [blockchain]: response.data[0]})
-
-           /* setIsButtonFetched(true)*/
 
             setIsButtonFetched((prevState) => ({
                 ...prevState,
