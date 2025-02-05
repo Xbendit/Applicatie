@@ -36,11 +36,6 @@ function CryptoInfoPortfolio({
                     onChange={(e) => handleInputChange(e, blockchain)}
                 />
 
-                {/*<button*/}
-                {/*    onClick={() => fetchWalletData(blockchain)}*/}
-                {/*>*/}
-                {/*    {isButtonFetched ? 'Wijzigen' : 'Invoeren'}*/}
-                {/*</button>*/}
             </div>
             {cryptoBalance ? (
                 <p> Balans: {calculateUnit(blockchain, cryptoBalance?.confirmed_balance || "0")} </p>
