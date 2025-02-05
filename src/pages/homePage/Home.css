@@ -1,3 +1,6 @@
+.body {
+    background-color: var(--color-secondary);
+}
 .header {
     color: white;
     background-color: var(--color-secondary);
@@ -8,9 +11,11 @@
 }
 
 .section-home-branding {
-    background-color: var(--color-white);
+    background-color: var(--color-secondary);
     text-align: center;
+    color: white;
 }
+
 h1{
     color: var(--color-white);
 }
@@ -21,21 +26,94 @@ h1{
     font-weight: bold;
 
 }
-.coinitem {
-    display: flex;
-    border: 2px solid black;
-    justify-content: space-around;
 
+.coinitem {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr; /* Zorgt ervoor dat alles goed onder de header uitlijnt */
+    align-items: center;
+    padding: 10px;
+    background-color: var(--color-tertiary);
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    color: white;
 }
-.coinprice{
+
+/*.coinitem {
     display: flex;
-    justify-content: flex-start;
-    border: 2px solid black;
+    align-items: center; !* Zorgt ervoor dat alle items verticaal gecentreerd zijn *!
+    justify-content: space-between; !* Verdeel de kolommen evenredig *!
+    padding: 10px;
+    margin: 10px 10px 0 10px ;
+    gap: 10px;
+    background-color: var(--color-tertiary);
+    border-radius: 5px;
+}*/
+
+ul{
+    display: flex;
+    flex-direction: column;
 }
+
+.coinitem p {
+    flex: 1; /* Zorgt ervoor dat elk item dezelfde breedte heeft */
+    text-align: center; /* Centreer de tekst */
+    font-size: 20px;
+    color: var(--color-white) ;
+}
+
 .listcoins{
-    border: 2px solid black;;
+    background-color: var(--color-secondary);
 }
+
 .coinImage{
-    width: auto;
+    width: 50px;
     height: 50px;
+    object-fit: contain;
 }
+
+.coinList {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.coinprice, .marketcap {
+    min-width: 150px; /* Voorkomt dat de tekst verspringt */
+    text-align: right;
+}
+
+.coinHeader {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 1fr 2fr 1fr; /* Elke tekst krijgt een button ernaast */
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-secondary);
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/*
+.buttonMC,
+.buttonPrice,
+.buttonPercentage {
+    background-color: var(--color-primary);
+    border: none;
+    padding: 5px 10px;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.buttonMC:hover,
+.buttonPrice:hover,
+.buttonPercentage:hover {
+    background-color: var(--color-primary);
+    cursor: pointer;
+    border: 1px solid var(--color-secondary-light);
+}*/

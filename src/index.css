@@ -27,6 +27,7 @@ body {
   color: var(--color-secondary);
 }
 
+
 button, input, select, textarea {
   font-family: inherit;
 }

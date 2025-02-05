@@ -1,4 +1,4 @@
-.login-section {
+.register-section {
     display: flex;
     justify-content: center;
     background-color: var(--color-secondary);
@@ -13,7 +13,7 @@ header{
     font-size: 40px;
 }
 
-.input-login{
+.input-register{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -44,7 +44,7 @@ form {
     max-width: 500px;
     border-radius: 4px;
 }
-.input-login{
+.input-register{
     display: flex;
     justify-content: flex-end;
 }
@@ -55,4 +55,8 @@ form {
 }
 button {
     margin: 5px 0 5px 0 ;
+}
+p {
+    color: var(--color-secondary-light);
+    font-size:  1px;
 }

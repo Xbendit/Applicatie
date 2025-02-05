@@ -1,37 +1,46 @@
 import './PortfolioPage.css';
-import logo from '../../assets/logo-white.png';
-import billboard from '../../assets/billboard-logo.png';
 import axios from 'axios';
-import {useState,useEffect} from "react";
+import {useState, useEffect} from "react";
 import sortData from "../../helpers/sortData.js"
+import CryptoInfoPortfolio from "../../components/cryptoInfoPortfolio/CryptoInfoPortfolio.jsx";
 
 function PortfolioPage() {
 
     const [cryptoStats, setCryptoStats] = useState([])
+
+    const [cryptoBalance, setCryptoBalance] = useState({});
+    const [walletAdress, setwalletAdress] = useState({});
+    const [isButtonFetched, setIsButtonFetched] = useState({});
 
     useEffect(()=>{
 
         async function fetchData() {
 
             try {
-                const response = await axios.get('https://api.binance.com/api/v3/ticker/24hr');
-                console.log(response)
+                const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+                    params: {
+                        vs_currency: 'usd', // Huidige prijs in USD
+                        ids: 'bitcoin,ethereum,polkadot,solana,dogecoin,ripple', // Specificeer de crypto's
+                    },
+                });
 
-                const filteredPrices = response.data.filter(item => ['BTCUSDT', 'ETHUSDT', 'USDTUSDT', 'BNBUSDT', 'SOLUSDT', 'XRPUSDT'].includes(item.symbol)
-                )
-                console.log(filteredPrices)
+               /* console.log(response.data);*/
 
-                const formattedPrices = filteredPrices.map((item) => ({
-                    symbol: item.symbol,
-                    price: parseFloat(item.lastPrice).toFixed(2),
-                    changePercent: parseFloat(item.priceChangePercent).toFixed(2)
+                const formattedData = response.data.map((coin) => ({
+                    name: coin.name,
+                    symbol: coin.symbol,
+                    price: coin.current_price.toFixed(2), // Huidige prijs
+                    changePercent: coin.price_change_percentage_24h.toFixed(2), // 24-uurs verandering
+                    marketCap: coin.market_cap.toLocaleString(), // Market cap in leesbaar formaat
+                    marketCapRank:coin.market_cap_rank,
+                    logo: coin.image, // Logo URL
                 }));
 
-                setCryptoStats(formattedPrices)
-                console.log(formattedPrices)
+                console.log(formattedData);
 
-            } catch (e) {
-                console.error(e);
+                setCryptoStats(formattedData)
+            } catch (error) {
+                console.error('Error fetching data:', error);
             }
         }
 
@@ -39,78 +48,101 @@ function PortfolioPage() {
 
     },[]);
 
-    function sortPrice () {
-        const sortedStats = sortData(cryptoStats,"price","desc");
+
+
+    function sortPrice() {
+        const sortedStats = sortData(cryptoStats, "price", "desc");
         setCryptoStats((sortedStats))
 
     }
-    function sortPercent () {
-        const sortedStats = sortData(cryptoStats,"changePercent","desc");
+
+    function sortPercent() {
+        const sortedStats = sortData(cryptoStats, "changePercent", "desc");
         setCryptoStats((sortedStats))
 
     }
 
-    async function fetchWalletData() {
-        const walletAddress = 'bc1qr4dl5wa7kl8yu792dceg9z5knl2gkn220lk7a9'
+
+
+
+
+
+    const handleInputChange = (event, blockchain) => {
+        setwalletAdress({
+            ...walletAdress,
+            [blockchain]: event.target.value,
+        })
+    }
+
+    /*const [isButtonFetched, setIsButtonFetched] = useState(false);*/
+
+    const fetchWalletData = async (blockchain) => {
+
+        const API_KEY = '';
+        const BASE_URL = 'https://svc.blockdaemon.com'; // Blockdaemon API basis-URL
+
 
         try {
-            const response1 = await axios.get(`https://api.blockchair.com/bitcoin/dashboards/address/${walletAddress}`)
-            console.log(response1)
+            const response = await axios.get(`${BASE_URL}/universal/v1/${blockchain}/mainnet/account/${walletAdress[blockchain]}`, {
+                    headers: {
+                        Authorization: `Bearer ${API_KEY}`,
+                    },
+                }
+            );
+            console.log(response)
+            setCryptoBalance({...cryptoBalance, [blockchain]: response.data[0]})
+
+           /* setIsButtonFetched(true)*/
+
+            setIsButtonFetched((prevState) => ({
+                ...prevState,
+                [blockchain]: true,
+            }));
+
         } catch (e) {
             console.error(e);
         }
     }
 
 
-
     return (<>
             <header className="header outer-content-container">
-                <div data-layer="BitGo" className="Bitgo">BitGo</div>
+                <div data-layer="BitGo" className="Bitgo">Portfolio</div>
             </header>
+
             <section className="section-home-branding outer-content-container">
-                <div className="inner-content-container__text-restriction">
-                    <h1>Hier worden de 5 belangrijkste crypto's weergegeven</h1>
 
+                    <div className="portfolio-page">
+                        {['bitcoin', 'ethereum', 'polkadot', 'solana', 'dogecoin', 'xrp'].map((blockchain) => {
+                            const blockchainSymbol = {
+                                bitcoin: 'btc',
+                                ethereum: 'eth',
+                                polkadot: 'dot',
+                                solana: 'sol',
+                                dogecoin: 'doge',
+                                xrp: 'xrp'
+                            }[blockchain];
 
-                    <button
-                        onClick={fetchWalletData}
-                    > Invoeren</button>
+                            const blockchainStats = cryptoStats.find(stats => stats.symbol === blockchainSymbol);
 
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Public Key:"/>
+                            return (
+                                <CryptoInfoPortfolio
+                                    key={blockchain}
+                                    blockchain={blockchain}
+                                    walletAdress={walletAdress[blockchain] || ''}
+                                    handleInputChange={handleInputChange}
+                                    fetchWalletData={fetchWalletData}
+                                    isButtonFetched={isButtonFetched[blockchain]}
+                                    cryptoBalance={cryptoBalance[blockchain]}
+                                    cryptoStats={blockchainStats} // Pass correct stats
+                                />
+                            );
+                        })}
 
-                    <button
-                        onClick={sortPrice}
-                        className="button1"
-                    >Sorteer prijs
-                    </button>
-
-                    <button
-                        onClick={sortPercent}
-                        className="button2"
-                    >Sorteer 24h
-                    </button>
-
-                </div>
+                    </div>
 
             </section>
-            <section>
-                {cryptoStats.length > 0 ? (
-                    <ul>
-                        {cryptoStats.map((coin) => (
-                            <li key={coin.symbol}>
-                                <p>${coin.price} 24%: {coin.changePercent}</p>
 
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>Bezig met laden.. </p>
-                )}
-            </section>
         </>
     );
 }

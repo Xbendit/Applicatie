@@ -1,6 +1,6 @@
-import './Input.css';
+import './Input[remove].css';
 
-function Input({ labelText, name, handleChange, required, type, formStateValue }) {
+function InputRemove({ labelText, name, handleChange, required, type, formStateValue }) {
     const labelInputLink = `post-${name}`;
 
     return (
@@ -18,4 +18,4 @@ function Input({ labelText, name, handleChange, required, type, formStateValue }
     );
 }
 
-export default Input;
+export default InputRemove;
