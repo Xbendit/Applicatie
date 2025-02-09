@@ -3,7 +3,7 @@ function CalculateWaarde (amount, dollarValue) {
     const walletValue = amount * dollarValue;
 
     return (
-        walletValue
+        walletValue.toFixed(2)
     );
 }
 

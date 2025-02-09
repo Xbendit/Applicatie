@@ -23,7 +23,7 @@ function CalculateUnit(blockchain, amount) {
         realUnit = amount/100000
     }
     return (
-        realUnit
+        realUnit.toFixed(2)
     );
 }
 
