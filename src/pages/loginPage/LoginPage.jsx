@@ -41,7 +41,7 @@ function LoginPage() {
             login(response.data.jwt)
             navigate('/portfolio');
         } catch (e) {
-            console.error("er ging iets mis", e);
+            console.error("er ging iets mis met inloggen", e);
         }
     }
 

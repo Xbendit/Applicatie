@@ -1,7 +1,6 @@
 import './PortfolioPage.css';
 import axios from 'axios';
 import {useState, useEffect} from "react";
-import sortData from "../../helpers/sortData.js"
 import CryptoInfoPortfolio from "../../components/cryptoInfoPortfolio/CryptoInfoPortfolio.jsx";
 import calculateTotal from "../../helpers/calculateTotal.js"
 
@@ -11,14 +10,18 @@ function PortfolioPage() {
     const [cryptoBalance, setCryptoBalance] = useState({});
     const [walletAdress, setwalletAdress] = useState({});
     const [isButtonFetched, setIsButtonFetched] = useState({});
-
     const [askPrices, setAskPrices] = useState({});
+
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(()=>{
 
         async function fetchData() {
 
             try {
+
+                setIsLoading(true);
+
                 const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
                     params: {
                         vs_currency: 'usd', // Huidige prijs in USD
@@ -35,13 +38,15 @@ function PortfolioPage() {
                     marketCapRank:coin.market_cap_rank,
                     logo: coin.image, // Logo URL
                 }));
-
-                console.log(formattedData);
-
                 setCryptoStats(formattedData)
+
             } catch (error) {
                 console.error('Error fetching data:', error);
+                setIsLoading(false);
+            } finally {
+                console.log(isLoading)
             }
+
         }
 
         fetchData();
@@ -58,9 +63,7 @@ function PortfolioPage() {
                     dogecoin: response.data.find((coin) => coin.symbol === "DOGEUSDT")?.askPrice || 0,
                     xrp: response.data.find((coin) => coin.symbol === "XRPUSDT")?.askPrice || 0
                 };
-
                 setAskPrices(filteredPrices);
-                console.log("Ask Prices:", filteredPrices);
             } catch (error) {
                 console.error("Error fetching ask prices:", error);
             }
@@ -69,18 +72,6 @@ function PortfolioPage() {
         fetchAskPrices();
 
     },[]);
-
-    function sortPrice() {
-        const sortedStats = sortData(cryptoStats, "price", "desc");
-        setCryptoStats((sortedStats))
-
-    }
-
-    function sortPercent() {
-        const sortedStats = sortData(cryptoStats, "changePercent", "desc");
-        setCryptoStats((sortedStats))
-
-    }
 
     const handleInputChange = (event, blockchain) => {
         setwalletAdress({
@@ -111,8 +102,8 @@ function PortfolioPage() {
                 [blockchain]: true,
             }));
 
-        } catch (e) {
-            console.error(e);
+        } catch (error) {
+            console.error('Error fetching data:', error);
         }
     }
 
@@ -125,6 +116,10 @@ function PortfolioPage() {
 <div className='Total'>
     <h2>Totale verkoopwaarde: ${totalPortfolioValue} USD</h2>
 </div>
+
+        {/*{isLoading ? (
+            <p>Bezig met laden...</p>
+        ) : (*/}
             <section className="section-home-branding outer-content-container">
 
                     <div className="portfolio-page">
@@ -149,7 +144,7 @@ function PortfolioPage() {
                                     fetchWalletData={fetchWalletData}
                                     isButtonFetched={isButtonFetched[blockchain]}
                                     cryptoBalance={cryptoBalance[blockchain]}
-                                    cryptoStats={blockchainStats} // Pass correct stats
+                                    cryptoStats={blockchainStats}
                                 />
                             );
                         })}
@@ -157,7 +152,7 @@ function PortfolioPage() {
                     </div>
 
             </section>
-
+        {/*)}*/}
         </>
     );
 }

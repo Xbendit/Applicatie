@@ -9,7 +9,7 @@ function NotFound() {
         <section className="not-found-section outer-content-container">
             <div className="inner-content-container">
                 <h1>404</h1>
-                <h2>De pagina waar je naar zoekt bestaat niet</h2>
+                <h2>De pagina waar je naar zoekt bestaat niet.</h2>
                 <span>
                     <ButtonNav type="button" variant="primary" onClick={() => navigate('/')}>Terug naar home</ButtonNav>
                 </span>
