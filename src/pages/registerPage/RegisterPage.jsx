@@ -38,7 +38,7 @@ function RegisterPage() {
             console.log("Gebruiker succesvol geregistreerd")
             navigate('/login');
         } catch(e) {
-            console.error("er ging iets mis", e);
+            console.error("er ging iets mis registeren", e);
         }
     }
 

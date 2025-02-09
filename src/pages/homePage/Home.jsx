@@ -22,7 +22,7 @@ function Home() {
                     },
                 });
 
-                console.log(response.data);
+
 
                 const formattedData = response.data.map((coin) => ({
                     name: coin.name,
@@ -34,7 +34,6 @@ function Home() {
                     logo: coin.image, // Logo URL
                 }));
 
-                console.log(formattedData);
                 setCryptoStats(formattedData)
             } catch (error) {
                 console.error('Error fetching data:', error);

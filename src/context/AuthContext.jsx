@@ -32,8 +32,10 @@ function AuthContextProvider({children}) {
         console.log(JWT)
         const decoded = jwtDecode(JWT);
         console.log(decoded)
-        void fetchUserData(decoded.sub, JWT, '/portfolio');
 
+        void fetchUserData(decoded.sub, JWT).then(() => {
+            navigate('/portfolio');
+        });
 
     }
 
@@ -59,8 +61,6 @@ function AuthContextProvider({children}) {
                     Authorization: `Bearer ${JWT}`,
                 },
             });
-            console.log(result)
-
             toggleIsAuth({
                 ...isAuth,
                 isAuth: true,
@@ -70,8 +70,6 @@ function AuthContextProvider({children}) {
                 },
                 status: 'done',
             });
-            console.log(isAuth)
-            navigate('/portfolio');
 
         } catch (e) {
             console.error(e);
