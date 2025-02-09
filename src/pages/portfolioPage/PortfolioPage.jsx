@@ -3,6 +3,7 @@ import axios from 'axios';
 import {useState, useEffect} from "react";
 import sortData from "../../helpers/sortData.js"
 import CryptoInfoPortfolio from "../../components/cryptoInfoPortfolio/CryptoInfoPortfolio.jsx";
+import calculateTotal from "../../helpers/calculateTotal.js"
 
 function PortfolioPage() {
 
@@ -10,6 +11,8 @@ function PortfolioPage() {
     const [cryptoBalance, setCryptoBalance] = useState({});
     const [walletAdress, setwalletAdress] = useState({});
     const [isButtonFetched, setIsButtonFetched] = useState({});
+
+    const [askPrices, setAskPrices] = useState({});
 
     useEffect(()=>{
 
@@ -42,6 +45,28 @@ function PortfolioPage() {
         }
 
         fetchData();
+
+        async function fetchAskPrices() {
+            try {
+                const response = await axios.get('https://api.binance.com/api/v3/ticker/bookTicker');
+
+                const filteredPrices = {
+                    bitcoin: response.data.find((coin) => coin.symbol === "BTCUSDT")?.askPrice || 0,
+                    ethereum: response.data.find((coin) => coin.symbol === "ETHUSDT")?.askPrice || 0,
+                    polkadot: response.data.find((coin) => coin.symbol === "DOTUSDT")?.askPrice || 0,
+                    solana: response.data.find((coin) => coin.symbol === "SOLUSDT")?.askPrice || 0,
+                    dogecoin: response.data.find((coin) => coin.symbol === "DOGEUSDT")?.askPrice || 0,
+                    xrp: response.data.find((coin) => coin.symbol === "XRPUSDT")?.askPrice || 0
+                };
+
+                setAskPrices(filteredPrices);
+                console.log("Ask Prices:", filteredPrices);
+            } catch (error) {
+                console.error("Error fetching ask prices:", error);
+            }
+        }
+
+        fetchAskPrices();
 
     },[]);
 
@@ -91,12 +116,15 @@ function PortfolioPage() {
         }
     }
 
+    const totalPortfolioValue = calculateTotal(cryptoBalance, askPrices);
 
     return (<>
             <header className="header outer-content-container">
                 <div data-layer="BitGo" className="Bitgo">Portfolio</div>
             </header>
-
+<div className='Total'>
+    <h2>Totale verkoopwaarde: ${totalPortfolioValue} USD</h2>
+</div>
             <section className="section-home-branding outer-content-container">
 
                     <div className="portfolio-page">

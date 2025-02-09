@@ -1,3 +1,11 @@
+h2{
+    color: var(--color-primary);
+}
+.Total{
+    display: flex;
+    justify-content: center;
+}
+
 .overview-section {
     text-align: left;
     background-color: var( --color-secondary);

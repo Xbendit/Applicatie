@@ -40,7 +40,7 @@ function CryptoInfoPortfolio({
             {cryptoBalance ? (
                 <p> Balans: {calculateUnit(blockchain, cryptoBalance?.confirmed_balance || "0")} </p>
             ) : (
-                <p> 0 {blockchain.toUpperCase()} </p>
+                <p> Balans: 0 {blockchain.toUpperCase()} </p>
             )}
             <div>
                 {cryptoStats && (
@@ -52,7 +52,9 @@ function CryptoInfoPortfolio({
             {cryptoStats && (
                 <>
                     <p>${cryptoStats.price}</p>
-                    <p>${calculateWaarde(calculateUnit(blockchain, cryptoBalance?.confirmed_balance || "0"), cryptoStats.price)}</p>
+
+                    <p>Waarde: ${calculateWaarde(calculateUnit(blockchain, cryptoBalance?.confirmed_balance || "0"), cryptoStats.price)}</p>
+
                     <p className="coinchange">{cryptoStats.changePercent}%</p>
                 </>
             )}
