@@ -13,5 +13,4 @@ function CryptoInfoHome({marketCapRank, image, marketCap, price, change}) {
         </li>
             );
 }
-
             export default CryptoInfoHome;

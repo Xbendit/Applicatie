@@ -43,10 +43,7 @@ function PortfolioPage() {
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setIsLoading(false);
-            } finally {
-                console.log(isLoading)
             }
-
         }
 
         fetchData();
@@ -94,7 +91,6 @@ function PortfolioPage() {
                     },
                 }
             );
-            console.log(response)
             setCryptoBalance({...cryptoBalance, [blockchain]: response.data[0]})
 
             setIsButtonFetched((prevState) => ({
@@ -117,9 +113,6 @@ function PortfolioPage() {
     <h2>Totale verkoopwaarde: ${totalPortfolioValue} USD</h2>
 </div>
 
-        {/*{isLoading ? (
-            <p>Bezig met laden...</p>
-        ) : (*/}
             <section className="section-home-branding outer-content-container">
 
                     <div className="portfolio-page">
@@ -152,7 +145,7 @@ function PortfolioPage() {
                     </div>
 
             </section>
-        {/*)}*/}
+
         </>
     );
 }

@@ -29,9 +29,7 @@ function AuthContextProvider({children}) {
 
     function login(JWT) {
         localStorage.setItem('token', JWT);
-        console.log(JWT)
         const decoded = jwtDecode(JWT);
-        console.log(decoded)
 
         void fetchUserData(decoded.sub, JWT).then(() => {
             navigate('/portfolio');
@@ -47,7 +45,6 @@ function AuthContextProvider({children}) {
                 status: 'done',
             }
         );
-        console.log('Gebruiker is uitgelogd')
         navigate('/');
 
     }
@@ -73,7 +70,6 @@ function AuthContextProvider({children}) {
 
         } catch (e) {
             console.error(e);
-
             toggleIsAuth({
                 isAuth: false,
                 user: null,

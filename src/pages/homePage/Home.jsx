@@ -5,7 +5,6 @@ import sortData from "../../helpers/sortData.js"
 import CryptoInfoHome from "../../components/cryptoInfoHome/CryptoInfoHome.jsx";
 import ButtonSort from "../../components/button/ButtonSort.jsx";
 
-
 function Home() {
 
     const [cryptoStats, setCryptoStats] = useState([])
@@ -22,8 +21,6 @@ function Home() {
                     },
                 });
 
-
-
                 const formattedData = response.data.map((coin) => ({
                     name: coin.name,
                     symbol: coin.symbol,
@@ -39,7 +36,6 @@ function Home() {
                 console.error('Error fetching data:', error);
             }
         }
-
         fetchData();
 
     }, []);

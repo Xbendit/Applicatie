@@ -13,7 +13,6 @@ function RegisterPage() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log("Registratiegegevens:", { email, password, username });
 
         try {
             await axios.post('https://api.datavortex.nl/cryptoapp/users',
@@ -34,8 +33,6 @@ function RegisterPage() {
                     }
                 }
             );
-
-            console.log("Gebruiker succesvol geregistreerd")
             navigate('/login');
         } catch(e) {
             console.error("er ging iets mis registeren", e);

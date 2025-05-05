@@ -39,17 +39,6 @@ h1{
     color: white;
 }
 
-/*.coinitem {
-    display: flex;
-    align-items: center; !* Zorgt ervoor dat alle items verticaal gecentreerd zijn *!
-    justify-content: space-between; !* Verdeel de kolommen evenredig *!
-    padding: 10px;
-    margin: 10px 10px 0 10px ;
-    gap: 10px;
-    background-color: var(--color-tertiary);
-    border-radius: 5px;
-}*/
-
 ul{
     display: flex;
     flex-direction: column;
@@ -98,22 +87,3 @@ ul{
     border-radius: 10px;
     margin-bottom: 10px;
 }
-
-/*
-.buttonMC,
-.buttonPrice,
-.buttonPercentage {
-    background-color: var(--color-primary);
-    border: none;
-    padding: 5px 10px;
-    color: black;
-    cursor: pointer;
-    border-radius: 5px;
-}
-.buttonMC:hover,
-.buttonPrice:hover,
-.buttonPercentage:hover {
-    background-color: var(--color-primary);
-    cursor: pointer;
-    border: 1px solid var(--color-secondary-light);
-}*/
