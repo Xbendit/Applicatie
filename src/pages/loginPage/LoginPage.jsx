@@ -16,7 +16,6 @@ function LoginPage() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log("Inlog gegevens:", {password, username});
 
         try {
             const response = await axios.post('https://api.datavortex.nl/cryptoapp/users/authenticate',
@@ -36,8 +35,6 @@ function LoginPage() {
                     }
                 }
             );
-            console.log(response)
-            console.log("Gebruiker succesvol ingelogt")
             login(response.data.jwt)
             navigate('/portfolio');
         } catch (e) {

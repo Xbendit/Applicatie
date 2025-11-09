@@ -1,0 +1,37 @@
+
+
+/*.details-panel { position: static; left: 0; right: 0; background: #1f2a2f; border-top: 1px solid #3a4a50; padding: 12px 16px; color: #e9f0f2; z-index: 1000; }
+
+
+.details-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.details-title { display: flex; align-items: center; gap: 8px; }
+.details-logo { width: 20px; height: 20px; }
+.details-symbol { opacity: 0.8; margin-left: 6px; font-weight: normal; }
+.details-close { background: #2f4a2f; border: 0; border-radius: 4px; padding: 4px 8px; color: #fff; cursor: pointer; }
+.details-error { color: #ffb3b3; }
+.details-content p { margin: 4px 0; }*/
+.details-panel {
+    /* NIET meer fixed; gewoon in de flow */
+    position: static;
+    background: #1f2a2f;
+    border: 1px solid #3a4a50;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #e9f0f2;
+
+    /* Responsief centreren en schalen */
+    max-width: 1200px;            /* stem af op de breedte van je lijst */
+    width: calc(100% - 32px);     /* kleine marge aan de zijkanten */
+    margin: 16px auto 24px;       /* ruimte boven/onder en centreren */
+    margin-bottom: 24px;
+    /* Leesbaarheid lange teksten */
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+.details-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.details-title { display: flex; align-items: center; gap: 8px; }
+.details-logo { width: 20px; height: 20px; }
+.details-symbol { opacity: 0.8; margin-left: 6px; font-weight: normal; }
+.details-close { background: #2f4a2f; border: 0; border-radius: 4px; padding: 4px 8px; color: #fff; cursor: pointer; }
+.details-error { color: #ffb3b3; }
+.details-description { margin: 6px 0 10px; }

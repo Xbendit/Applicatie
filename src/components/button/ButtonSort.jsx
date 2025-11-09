@@ -8,7 +8,6 @@ function ButtonSort({onClick, className, children}) {
             className= {`buttonSort ${className}`}
         > {children}
         </button>
-  
 );
 }
 
