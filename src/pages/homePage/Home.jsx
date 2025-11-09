@@ -22,19 +22,19 @@ function Home() {
             try {
                 const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
                     params: {
-                        vs_currency: 'usd', // Huidige prijs in USD
-                        ids: 'bitcoin,ethereum,polkadot,solana,cardano,ripple', // Specificeer de crypto's
+                        vs_currency: 'usd',
+                        ids: 'bitcoin,ethereum,polkadot,solana,cardano,ripple',
                     },
                 });
                 const formattedData = response.data.map((coin) => ({
                     id:coin.id,
                     name: coin.name,
                     symbol: coin.symbol,
-                    price: coin.current_price.toFixed(2), // Huidige prijs
-                    changePercent: coin.price_change_percentage_24h.toFixed(2), // 24-uurs verandering
-                    marketCap: coin.market_cap.toLocaleString(), // Market cap in leesbaar formaat
+                    price: coin.current_price.toFixed(2),
+                    changePercent: coin.price_change_percentage_24h.toFixed(2),
+                    marketCap: coin.market_cap.toLocaleString(),
                     marketCapRank: coin.market_cap_rank,
-                    logo: coin.image, // Logo URL
+                    logo: coin.image,
                 }));
                 setCryptoStats(formattedData)
             } catch (error) {
