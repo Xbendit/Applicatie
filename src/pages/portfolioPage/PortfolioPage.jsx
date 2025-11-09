@@ -4,6 +4,8 @@ import {useState, useEffect} from "react";
 import CryptoInfoPortfolio from "../../components/cryptoInfoPortfolio/CryptoInfoPortfolio.jsx";
 import calculateTotal from "../../helpers/calculateTotal.js"
 
+import DetailsPanel from "../../components/detailsPanel/DetailsPanel.jsx";
+
 function PortfolioPage() {
 
     const [cryptoStats, setCryptoStats] = useState([])
@@ -11,7 +13,6 @@ function PortfolioPage() {
     const [walletAdress, setwalletAdress] = useState({});
     const [isButtonFetched, setIsButtonFetched] = useState({});
     const [askPrices, setAskPrices] = useState({});
-
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(()=>{
@@ -70,6 +71,11 @@ function PortfolioPage() {
 
     },[]);
 
+
+
+
+
+
     const handleInputChange = (event, blockchain) => {
         setwalletAdress({
             ...walletAdress,
@@ -105,6 +111,7 @@ function PortfolioPage() {
 
     const totalPortfolioValue = calculateTotal(cryptoBalance, askPrices);
 
+
     return (<>
             <header className="header outer-content-container">
                 <div data-layer="BitGo" className="Bitgo">Portfolio</div>
@@ -128,6 +135,8 @@ function PortfolioPage() {
 
                             const blockchainStats = cryptoStats.find(stats => stats.symbol === blockchainSymbol);
 
+                            const coinId = blockchainStats?.id || blockchain;
+
                             return (
                                 <CryptoInfoPortfolio
                                     key={blockchain}
@@ -138,6 +147,9 @@ function PortfolioPage() {
                                     isButtonFetched={isButtonFetched[blockchain]}
                                     cryptoBalance={cryptoBalance[blockchain]}
                                     cryptoStats={blockchainStats}
+
+
+
                                 />
                             );
                         })}

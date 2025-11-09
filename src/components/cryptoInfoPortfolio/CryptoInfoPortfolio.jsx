@@ -11,7 +11,7 @@ function CryptoInfoPortfolio({
                                  fetchWalletData,
                                  isButtonFetched,
                                  cryptoBalance,
-                                 cryptoStats
+                                 cryptoStats,
                              }) {
 
     return (
@@ -24,7 +24,6 @@ function CryptoInfoPortfolio({
                     blockchain={blockchain}
                     className="portfolio-button"
                 />
-
                 <input
                     type="text"
                     className="portfolio-input"
@@ -49,7 +48,8 @@ function CryptoInfoPortfolio({
             {cryptoStats && (
                 <>
                     <p>${cryptoStats.price}</p>
-                    <p>Waarde: ${calculateWaarde(calculateUnit(blockchain, cryptoBalance?.confirmed_balance || "0"), cryptoStats.price)}</p>
+                    <p>Waarde:
+                        ${calculateWaarde(calculateUnit(blockchain, cryptoBalance?.confirmed_balance || "0"), cryptoStats.price)}</p>
                     <p className="coinchange">{cryptoStats.changePercent}%</p>
                 </>
             )}
@@ -57,4 +57,5 @@ function CryptoInfoPortfolio({
         </div>
     );
 }
+
 export default CryptoInfoPortfolio;
